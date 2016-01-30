@@ -22,9 +22,8 @@
             <li>
                 <a href="#">Registro</a>
                 <ul>
-                <li>@Html.ActionLink("Registar Paciente", "Index", "Paciente", new { area = "Registro" }   ) </li>
-                    <li>@Html.ActionLink("Admin Clinicas", "ListaClinicas", "Auth", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
-                    <li>@Html.ActionLink("Crear Cuentas", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Registar Paciente", "lista", "Paciente", new { area = "Registro" } ,null  ) </li>                    
+                    
                 </ul>
 
             </li>
@@ -33,6 +32,6 @@
 }
 else
 {<ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Ingresar", "login", "Seguridad")</li>
+    <li>@Html.ActionLink("Ingresar", "login", "Seguridad",    new { area = "" }, null)</li>
 </ul>
 }

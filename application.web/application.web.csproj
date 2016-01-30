@@ -148,6 +148,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Registro\Views\web.config" />
     <Content Include="Areas\Registro\Views\Paciente\Index.cshtml" />
+    <Content Include="Areas\Registro\Views\Paciente\lista.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

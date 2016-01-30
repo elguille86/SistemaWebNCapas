@@ -22,20 +22,17 @@ namespace application.DAC
 
         public IList<Entity.RespuestaUsuario> ValidaAcceso(Entity.Usuario Model)
         {
-            IList<Entity.RespuestaUsuario> respuesta = null;
-  
+            IList<Entity.RespuestaUsuario> respuesta = null;  
             using (var con = new SqlConnection(this.ConnectionString))
             {
                 con.Open();
                 var parametros = new DynamicParameters();
                 parametros.Add("@login_user", Model.usuario);
-                parametros.Add("@pass_user", Model.pass);
-               
+                parametros.Add("@pass_user", Model.pass);               
                 //respuesta = Dapper.SqlMapper.Execute(con, "SP_USUARIO_VALIDAD", parametros, commandType: CommandType.StoredProcedure);
                 respuesta = Dapper.SqlMapper.Query<Entity.RespuestaUsuario>(con, "SP_USUARIO_VALIDAD", parametros, commandType: CommandType.StoredProcedure).ToList();
                 //List<Entity.RespuestaBD>  respuesta = con.Query<Entity.RespuestaBD>("SP_USUARIO_VALIDAD",parametros, commandType: System.Data.CommandType.StoredProcedure);
-                con.Close();
-                
+                con.Close();                
             }
             return respuesta.ToList();
         }

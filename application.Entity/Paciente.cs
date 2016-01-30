@@ -29,9 +29,10 @@ namespace application.Entity
         public string usu_numdoc { get; set; }
 
 
+        [Required]
         [Display(Name = "Fecha de Nacimiento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string usu_fechanac { get; set; }
 
        

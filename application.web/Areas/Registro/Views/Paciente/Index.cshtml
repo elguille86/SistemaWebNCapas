@@ -1,13 +1,11 @@
 ﻿@model application.Entity.Paciente
-
-@{
-     
+@{     
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
-
+<p>@ViewBag.mensaje</p>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

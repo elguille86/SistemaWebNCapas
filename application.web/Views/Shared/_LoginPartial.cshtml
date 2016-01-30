@@ -1,0 +1,38 @@
+﻿ 
+
+@if (Request.IsAuthenticated)
+{
+ 
+
+        <ul class="nav navbar-nav navbar-right">
+
+
+            <li>
+                @Html.ActionLink("Hola " + Html.Encode(User.Identity.Name) + " !", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+             
+            <li>@Html.ActionLink("Salir", "LogOut", "Seguridad")</li>
+        </ul>
+
+
+    <br /><br /><br />
+    <nav>
+        <ul>
+            <li> @Html.ActionLink("Lista de Mensajes", "Index", "Auth", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
+
+            <li>
+                <a href="#">Configuracion</a>
+                <ul>
+                    <li>@Html.ActionLink("Admin Clinicas", "ListaClinicas", "Auth", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
+                    <li>@Html.ActionLink("Crear Cuentas", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                </ul>
+
+            </li>
+        </ul>
+    </nav>
+}
+else
+{<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("Ingresar", "login", "Seguridad")</li>
+</ul>
+}

@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using Dapper;
 using System.Data;
+using System.Data.Entity;
 
 
 namespace application.DAC
@@ -33,6 +34,21 @@ namespace application.DAC
                 parametros.Add("@usu_nombres", Model.usu_nombres);
                 parametros.Add("@usu_fechanac", Model.usu_fechanac);
                 respuesta = Dapper.SqlMapper.Query<Entity.RespuestaGlobal>(con, "SP_INSERTAPACIENTE", parametros, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
+ 
+        public IList<Entity.Paciente> DAC_ListaPaciente()
+        {                
+            IList<Entity.Paciente>  respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                var parametros = new DynamicParameters();
+
+                respuesta = Dapper.SqlMapper.Query<Entity.Paciente>(con, "SP_LISTA_PACIENTE", null, commandType: CommandType.StoredProcedure).ToList();
+
                 con.Close();
             }
             return respuesta.ToList();

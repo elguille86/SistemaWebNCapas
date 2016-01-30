@@ -15,7 +15,8 @@ namespace application.web.Areas.Registro.Controllers
         // GET: Registro/Default
 
         public ActionResult lista() {
-            return View();
+             
+             return View(PacienteService.BL_ListaPaciente());
         }
         public ActionResult Index()
         {
@@ -33,11 +34,7 @@ namespace application.web.Areas.Registro.Controllers
 
                 if (respuesta.Count() > 0)
                 {
-                    //string pass2 = respuesta[0].ResPass.ToString().Trim();
-                    //if (pass == pass2)
-                    //{
-                    //    return View(Model);
-                    //}
+
                     if (respuesta[0].RespEstado == "true")
                     {
                         return View(Model);
@@ -51,7 +48,7 @@ namespace application.web.Areas.Registro.Controllers
                 else {
                     return HttpNotFound();
                 }
-                return View(Model);
+                
             }
             else
             {

@@ -10,5 +10,6 @@ namespace application.BL
     public interface IPacienteService
     {
         IList<RespuestaGlobal> BL_InsertaPaciente(Paciente Model);
+        IList<Paciente> BL_ListaPaciente();
     }
 }

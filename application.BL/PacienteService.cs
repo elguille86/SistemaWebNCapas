@@ -16,5 +16,11 @@ namespace application.BL
         {
             return this.PacienteRespositorio.DAC_InsertaPaciente(Model);
         }
+
+
+        public IList<Paciente> BL_ListaPaciente()
+        {
+            return this.PacienteRespositorio.DAC_ListaPaciente();
+        }
     }
 }

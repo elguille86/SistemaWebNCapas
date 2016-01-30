@@ -111,8 +111,16 @@ InsertaDato:
 END
 GO
 
+ 
+Create Procedure [dbo].[SP_LISTA_PACIENTE]
+as
+select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg] from TB_USUARIO_SALUD
+ORDER BY feg_reg DESC
+GO
 
+/*
 USE [BDDEMO]
 GO
 DELETE FROM [dbo].[TB_COD]
 DELETE FROM [dbo].[TB_USUARIO_SALUD]
+*/

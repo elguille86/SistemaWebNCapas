@@ -180,6 +180,7 @@
     <Content Include="Views\Shared\_basico.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout - Copia.cshtml" />
+    <Content Include="Views\Home\Mensaje.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.exito, .alerta , .error, .errovalid {padding: 0.6em 0.5em; margin-top: 0.5em; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
+.errovalid{ width: auto; }
+.exito{color:#4F8A10;background-color:#DFF2BF; border: 1px solid #4F8A10; }
+.alerta{color:#9F6000;background-color:#FEEFB3; border: 1px solid #9F6000; }
+.errovalid , .error{color:#D8000C;background-color:#FFBABA;  border: 1px solid #D8000C;}

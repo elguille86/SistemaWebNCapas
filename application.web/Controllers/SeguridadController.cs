@@ -46,7 +46,7 @@ namespace application.web.Controllers
             }
             else
             {
-                return HttpNotFound();
+                return HttpNotFound(" No se encuentra Disponible la Aplicacion");
             }
         }
 

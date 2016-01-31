@@ -32,7 +32,11 @@ namespace application.web.Controllers
                  this.User.Identity.IsAuthenticated ? this.User.Identity.Name : "Anonymous";           
             return View();
         }
+        [AllowAnonymous]
 
+        public ActionResult Mensaje() {
+            return View();
+        }
  
 
     }

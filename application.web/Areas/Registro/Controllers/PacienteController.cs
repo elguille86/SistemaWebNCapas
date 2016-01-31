@@ -34,13 +34,17 @@ namespace application.web.Areas.Registro.Controllers
 
                 if (respuesta.Count() > 0)
                 {
-
+                    string texto = respuesta[0].RespText;
+                    string cls = respuesta[0].RespClass;
+                    string respue = ("<div class='" + cls + "'>" + texto + "</div>");
+                    TempData["mensajeserver"] = respue;
                     if (respuesta[0].RespEstado == "true")
-                    {
-                        return View(Model);
+                    {                        
+                        //return View("../../../../Views/Home/Mensaje");                        
+                        //return View("~/Views/Home/Mensaje");                        
+                        return RedirectToAction("Mensaje", "Home", new { area = "" } );
                     }
                     else {
-                        ViewBag.mensaje = respuesta[0].RespText;
                         return View(Model);
                     }
 

@@ -1,6 +1,6 @@
 
 
-use  BDDEMO
+use  BDGRPNET
 GO
 
 drop procedure SP_USUARIO_VALIDAD  
@@ -13,7 +13,7 @@ SELECT login_user as ResUsuario,pass_user as ResPass, dni_user as RepDNI, Nom_Ro
 where a.Cod_Rol=b.Cod_Rol AND login_user = @login_user AND pass_user = @pass_user
 GO
 
-
+drop Procedure  [dbo].[S_Genera_Codigo2]  
 Create Procedure  [dbo].[S_Genera_Codigo2]  
  @nomtb varchar(50) ,@nro int output
 as
@@ -80,7 +80,7 @@ error:
 
 
 ErrorTexto: 
-		select  'Error.--El Nro de DNI '+@usu_numdoc+ ' ya se encuentra registrado' as RespText,'flase' as RespEstado,'_error' as RespClass
+		select  'Error.--El Nro de DNI '+@usu_numdoc+ ' ya se encuentra registrado' as RespText,'flase' as RespEstado,'error' as RespClass
 		--COMMIT TRAN   
 				if @@error > 0 goto error                  
 				goto Salir 
@@ -93,7 +93,7 @@ InsertaDato:
 		INSERT INTO [dbo].[TB_USUARIO_SALUD] ([usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg])
 		values(@codigo , @usu_numdoc ,@usu_apepaterno,@usu_apematerno , @usu_nombres,@usu_fechanac,1,getdate() )	
 		 	  
-		select 'Paciente Registrado con Exito ' as RespText,'true' as RespEstado ,'_mensaje' as RespClass
+		select 'Paciente Registrado con Exito ' as RespText,'true' as RespEstado ,'exito' as RespClass
 		--DBCC CHECKIDENT ('dbo.tb_documentos', RESEED, 0); 
 		--COMMIT TRAN   
   		if @@error > 0 goto error                  
@@ -106,12 +106,12 @@ InsertaDato:
  BEGIN CATCH 
 	ROLLBACK TRAN
 	--select ERROR_MESSAGE() 
-	select  'Error.-- No se ha podido Registrar los datos.' as RespText,'flase' as RespEstado,'_error' as RespClass
+	select  'Error.-- No se ha podido Registrar los datos.' as RespText,'flase' as RespEstado,'error' as RespClass
  END CATCH 
 END
 GO
 
- 
+drop Procedure [dbo].[SP_LISTA_PACIENTE]
 Create Procedure [dbo].[SP_LISTA_PACIENTE]
 as
 select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg] from TB_USUARIO_SALUD

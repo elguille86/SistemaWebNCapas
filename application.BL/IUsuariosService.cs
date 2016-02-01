@@ -5,10 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//using System.Configuration;
+
 namespace application.BL
 {
+    
     public interface IUsuariosService
     {
-        IList<RespuestaUsuario> ValidaAcceso(Usuario Model);
+        //string HASKEY = ConfigurationManager.AppSettings["HASH_KEY"].ToString();
+        IList<RespuestaUsuario> BL_ValidaAcceso(Usuario Model);
+
+ 
     }
 }

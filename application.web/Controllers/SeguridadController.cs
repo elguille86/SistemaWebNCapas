@@ -30,6 +30,7 @@ namespace application.web.Controllers
             if (ModelState.IsValid)
             {
                 if (Isvalid(Elmodel))//Verificar que el email y clave exista utilizando el método privado
+                //if( UsuarioService.IsValidUser(Elmodel))
                 {
                     //crea variable de usuario con el correo del usuario
                   
@@ -65,7 +66,7 @@ namespace application.web.Controllers
         {
             bool Isvalid = false;
             string pass = ModeloUsuario.pass;
-            IList<RespuestaUsuario> respuesta = this.UsuarioService.ValidaAcceso(ModeloUsuario);
+            IList<RespuestaUsuario> respuesta = this.UsuarioService.BL_ValidaAcceso(ModeloUsuario);
             
             if (respuesta.Count() > 0)
             {

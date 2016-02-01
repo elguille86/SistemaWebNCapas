@@ -1,0 +1,11 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-th"></i> <span>Registro</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>       
+        <ul class="treeview-menu">
+            <li><a href="@Url.Action(  "lista", "Paciente", new { area = "Registro" }, null)"><i class="fa fa-circle-o"></i> Registrar Paciente</a></li>
+        </ul>
+    </li>
+}

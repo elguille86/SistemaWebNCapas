@@ -39,7 +39,23 @@ namespace application.web
                         "~/cssbac/bootstrap.min.css",
                       "~/Content/styles.css"));
 
+            bundles.Add(new StyleBundle("~/themes/CssThemaNuevo").Include(
+                      "~/themes/bootstrap.min.css",
+                      "~/themes/AdminLTE.min.css",
+                      "~/themes/style.css",
+                      "~/themes/_all-skins.min.css"));
 
+            bundles.Add(new ScriptBundle("~/themes/js").Include(
+                      "~/themes/jQuery-2.1.4.min.js",
+                      "~/themes/bootstrap.min.js",
+                      "~/themes/bootstrap3-wysihtml5.all.min",
+                      "~/themes/app.min.js",
+                      "~/themes/dashboard.js",
+                      "~/themes/demo.js" 
+                    
+                      ));
+  //// 
+            
         }
     }
 }

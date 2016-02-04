@@ -149,6 +149,7 @@
     <Content Include="Areas\Registro\Views\web.config" />
     <Content Include="Areas\Registro\Views\Paciente\Index.cshtml" />
     <Content Include="Areas\Registro\Views\Paciente\lista.cshtml" />
+    <None Include="Properties\PublishProfiles\Sistema01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -191,6 +192,7 @@
     <Content Include="Views\Home\Mensaje.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial_Menu.cshtml" />
+    <Content Include="Views\Seguridad\NewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

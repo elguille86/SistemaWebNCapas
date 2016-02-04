@@ -27,9 +27,8 @@ namespace application.web.Controllers
         
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contacto de la aplicacion";           
-            ViewBag.ApplicationUser =
-                 this.User.Identity.IsAuthenticated ? this.User.Identity.Name : "Anonymous";           
+            ViewBag.Message = "Contacto de Soporte";           
+            ViewBag.ApplicationUser = this.User.Identity.IsAuthenticated ? this.User.Identity.Name : "Anonymous";           
             return View();
         }
         [AllowAnonymous]

@@ -6,13 +6,17 @@ using System.Web.Mvc;
 
 using application.Entity;
 using System.Web.Security;
+ 
 
 namespace application.web.Controllers
 {
- 
     public class SeguridadController : Controller
     {
+        
         private application.BL.IUsuariosService UsuarioService = new application.BL.UsuariosService();
+   
+        private application.BL.Configuracion.FuncionGeneral FunGen = new BL.Configuracion.FuncionGeneral();
+       
         // GET: Seguridad
         public ActionResult Index()
         {
@@ -29,20 +33,23 @@ namespace application.web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Isvalid(Elmodel))//Verificar que el email y clave exista utilizando el método privado
-                //if( UsuarioService.IsValidUser(Elmodel))
+ 
+                IList<RespuestaUsuario> Mirespuesta = this.FunGen.Isvalida(Elmodel);
+                if (Mirespuesta  != null)
                 {
-                    //crea variable de usuario con el correo del usuario
-                  
                     var auth = FormsAuthentication.GetAuthCookie(Elmodel.usuario, false);
                     //FormsAuthentication.SetAuthCookie()
+                    RespuestaUsuario Respue = new RespuestaUsuario();
+                    System.Web.HttpContext.Current.Session["NombreUsuario"] = Mirespuesta[0].ResNombre;                      
                     this.Response.Cookies.Add(auth);
                     ViewBag.nom = User.Identity.Name;
                     return RedirectToAction("Index","Home");
                 }
                 else
                 {
-                    return new HttpStatusCodeResult(401);
+                   return new HttpStatusCodeResult(401);
+
+ 
                 }
             }
             else
@@ -62,21 +69,27 @@ namespace application.web.Controllers
 
         }
 
-        private bool Isvalid(Usuario ModeloUsuario)
-        {
-            bool Isvalid = false;
-            string pass = ModeloUsuario.pass;
-            IList<RespuestaUsuario> respuesta = this.UsuarioService.BL_ValidaAcceso(ModeloUsuario);
-            
-            if (respuesta.Count() > 0)
-            {
-                string pass2 = respuesta[0].ResPass.ToString().Trim();
-                if (pass == pass2)
-                {
-                    Isvalid = true;
-                }
-            }
-            return Isvalid;
-        }
+        //private bool Isvalid(Usuario ModeloUsuario)
+        //{
+        //    bool Isvalid = false;
+        //    string pass = ModeloUsuario.pass;
+        //    IList<RespuestaUsuario> respuesta = this.UsuarioService.BL_ValidaAcceso(ModeloUsuario);
+
+        //    if (respuesta.Count() > 0)
+        //    {
+        //        string pass2 = respuesta[0].ResPass.ToString().Trim();
+        //        if (pass == pass2)
+        //        {
+        //            Isvalid = true;
+        //        }
+        //    }
+        //    return Isvalid;
+        //}
+
+
+
+
+
+
     }
 }

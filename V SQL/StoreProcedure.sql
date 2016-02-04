@@ -6,10 +6,12 @@ GO
 drop procedure SP_USUARIO_VALIDAD  
 
 Create procedure SP_USUARIO_VALIDAD
--- SP_USUARIO_VALIDAD 'grodriguez','12345'
-@login_user varchar(25) ,  @pass_user varchar(18)
+-- SP_USUARIO_VALIDAD 'grodriguez','dcqLJukrS115YND1skWQ8ha0ng/ZNgYhfmTQ5D1ad8Q='
+@login_user varchar(25) ,  @pass_user varchar(max)
 AS
-SELECT login_user as ResUsuario,pass_user as ResPass, dni_user as RepDNI, Nom_Rol as RedRol FROM  TB_USUARIO_SISTEMA a , TB_ROLES b
+SELECT login_user as ResUsuario,pass_user as ResPass, dni_user as RepDNI, Nom_Rol as RedRol ,
+apap_user +' '+ apam_user +' , '+ nom_user as ResNombre
+FROM  TB_USUARIO_SISTEMA a , TB_ROLES b
 where a.Cod_Rol=b.Cod_Rol AND login_user = @login_user AND pass_user = @pass_user
 GO
 
@@ -99,9 +101,6 @@ InsertaDato:
   		if @@error > 0 goto error                  
 				goto Salir 
 
-		 
-
-
  END TRY
  BEGIN CATCH 
 	ROLLBACK TRAN
@@ -124,3 +123,5 @@ GO
 DELETE FROM [dbo].[TB_COD]
 DELETE FROM [dbo].[TB_USUARIO_SALUD]
 */
+
+select * from dbo.TB_USUARIO_SISTEMA

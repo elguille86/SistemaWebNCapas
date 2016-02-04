@@ -25,6 +25,7 @@ namespace application.Entity
         public string ResPass { get; set; }
         public string RepDNI { get; set; }
         public string RedRol { get; set; }
+        public string ResNombre { get; set; }
  
     }
     

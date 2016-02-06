@@ -8,15 +8,15 @@ using application.Entity;
 
 namespace application.web.Areas.Registro.Controllers
 {
-   [Authorize]
-    public class PacienteController : Controller
+    [Authorize]
+    public class uuuuuuPacienteController : Controller
     {
         private application.BL.IPacienteService PacienteService = new application.BL.PacienteService();
         // GET: Registro/Default
 
         public ActionResult lista() {
              
-             return View();
+             return View(PacienteService.BL_ListaPaciente("fff"));
         }
         public ActionResult Index()
         {
@@ -42,7 +42,7 @@ namespace application.web.Areas.Registro.Controllers
                     {                        
                         //return View("../../../../Views/Home/Mensaje");                        
                         //return View("~/Views/Home/Mensaje");                        
-                        return RedirectToAction("lista", "Paciente", new { area = "Registro" });
+                        return RedirectToAction("Mensaje", "Home", new { area = "" } );
                     }
                     else {
                         return View(Model);

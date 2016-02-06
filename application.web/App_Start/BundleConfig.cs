@@ -43,18 +43,27 @@ namespace application.web
                       "~/themes/bootstrap.min.css",
                       "~/themes/AdminLTE.min.css",
                       "~/themes/style.css",
+                      "~/themes/jquery.bootgrid/jquery.bootgrid.min.css",
                       "~/themes/_all-skins.min.css"));
 
             bundles.Add(new ScriptBundle("~/themes/js").Include(
-                      "~/themes/jQuery-2.1.4.min.js",
+                      
                       "~/themes/bootstrap.min.js",
                       "~/themes/bootstrap3-wysihtml5.all.min",
-                      "~/themes/app.min.js",
-                      "~/themes/dashboard.js",
+                      "~/Scripts/jquery.bootgrid.min.js",
+                      "~/Scripts/jquery.bootgrid.fa.min.js",
+                      "~/themes/slimScroll/jquery.slimscroll.min.js",
+
+                      "~/themes/jquery.bootgrid/jquery.bootgrid.min.js",
+                      "~/themes/jquery.bootgrid/jquery.bootgrid.fa.min.js",
+                        "~/themes/app.min.js",
+ 
                       "~/themes/demo.js" 
                     
                       ));
-  //// 
+            //"~/themes/jQuery-2.1.4.min.js",
+                  //"~/themes/app.min.js",
+                  //    "~/themes/dashboard.js",
             
         }
     }

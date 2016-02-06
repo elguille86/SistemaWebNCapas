@@ -1,0 +1,58 @@
+﻿@model IEnumerable<application.Entity.Paciente>
+
+@{
+    ViewBag.Title = "lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>lista</h2>
+
+<p>
+    @Html.ActionLink("Registar Paciente", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_apepaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_apematerno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_numdoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usu_fechanac)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_apepaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_apematerno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_numdoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usu_fechanac)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

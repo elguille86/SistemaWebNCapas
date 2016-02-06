@@ -38,16 +38,16 @@ namespace application.DAC
             }
             return respuesta.ToList();
         }
- 
-        public IList<Entity.Paciente> DAC_ListaPaciente()
+
+        public IList<Entity.Paciente> DAC_ListaPaciente(string busqueda )
         {                
             IList<Entity.Paciente>  respuesta = null;
             using (var con = new SqlConnection(this.ConnectionString))
             {
                 con.Open();
                 var parametros = new DynamicParameters();
-
-                respuesta = Dapper.SqlMapper.Query<Entity.Paciente>(con, "SP_LISTA_PACIENTE", null, commandType: CommandType.StoredProcedure).ToList();
+                parametros.Add("@busqueda", busqueda);
+                respuesta = Dapper.SqlMapper.Query<Entity.Paciente>(con, "SP_LISTA_PACIENTE", parametros, commandType: CommandType.StoredProcedure).ToList();
 
                 con.Close();
             }

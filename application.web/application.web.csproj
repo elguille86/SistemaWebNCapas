@@ -121,9 +121,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Registro\Controllers\uuuuuuPacienteController.cs" />
     <Compile Include="Areas\Registro\Controllers\PacienteController.cs" />
     <Compile Include="Areas\Registro\RegistroAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -149,11 +151,18 @@
     <Content Include="Areas\Registro\Views\web.config" />
     <Content Include="Areas\Registro\Views\Paciente\Index.cshtml" />
     <Content Include="Areas\Registro\Views\Paciente\lista.cshtml" />
+    <Content Include="Areas\Registro\Views\Paciente\listaCopia.cshtml" />
     <None Include="Properties\PublishProfiles\Sistema01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-1.11.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.11.1.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.bootgrid.fa.js" />
+    <Content Include="Scripts\jquery.bootgrid.fa.min.js" />
+    <Content Include="Scripts\jquery.bootgrid.js" />
+    <Content Include="Scripts\jquery.bootgrid.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -170,6 +179,11 @@
     <Content Include="themes\dashboard.js" />
     <Content Include="themes\demo.js" />
     <Content Include="themes\jQuery-2.1.4.min.js" />
+    <Content Include="themes\jquery.bootgrid\jquery.bootgrid.fa.min.js" />
+    <Content Include="themes\jquery.bootgrid\jquery.bootgrid.min.css" />
+    <Content Include="themes\jquery.bootgrid\jquery.bootgrid.min.js" />
+    <Content Include="themes\slimScroll\jquery.slimscroll.js" />
+    <Content Include="themes\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="themes\style.css" />
     <Content Include="themes\_all-skins.min.css" />
     <Content Include="Web.config" />
@@ -185,7 +199,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Seguridad\login.cshtml" />
     <Content Include="Views\Shared\_basico.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -206,7 +219,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\application.BL\application.BL.csproj">

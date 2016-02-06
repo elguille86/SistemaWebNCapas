@@ -18,9 +18,9 @@ namespace application.BL
         }
 
 
-        public IList<Paciente> BL_ListaPaciente()
+        public IList<Paciente> BL_ListaPaciente(string busqueda)
         {
-            return this.PacienteRespositorio.DAC_ListaPaciente();
+            return this.PacienteRespositorio.DAC_ListaPaciente(  busqueda);
         }
     }
 }

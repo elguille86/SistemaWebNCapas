@@ -47,6 +47,15 @@ namespace application.web.Controllers
                     //System.Web.HttpContext.Current.Session["NombreUsuario"] = Mirespuesta[0].ResNombre;
                     Session["NombreUsuario"] = Mirespuesta[0].ResNombre;   
                     
+
+ 
+
+
+
+
+
+
+
                     this.Response.Cookies.Add(auth);
                     ViewBag.nom = User.Identity.Name;
                     return RedirectToAction("Index","Home");

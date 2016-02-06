@@ -31,8 +31,9 @@ namespace application.web.Controllers
             ViewBag.ApplicationUser = this.User.Identity.IsAuthenticated ? this.User.Identity.Name : "Anonymous";           
             return View();
         }
-        [AllowAnonymous]
 
+
+        [AllowAnonymous]
         public ActionResult Mensaje() {
             return View();
         }

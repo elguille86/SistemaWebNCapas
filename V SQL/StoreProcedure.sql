@@ -93,7 +93,7 @@ InsertaDato:
 		set @codigo =   right(year(getdate()),2)  +  right('00000000000000000'+ LTRIM(RTRIM(@NroCorrelativo))  ,10)
 
 		INSERT INTO [dbo].[TB_USUARIO_SALUD] ([usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg])
-		values(@codigo , @usu_numdoc ,@usu_apepaterno,@usu_apematerno , @usu_nombres,@usu_fechanac,1,getdate() )	
+		values(@codigo ,  @usu_numdoc  ,UPPER(@usu_apepaterno),UPPER(@usu_apematerno) , UPPER(@usu_nombres),@usu_fechanac,1,getdate() )	
 		 	  
 		select 'Paciente Registrado con Exito ' as RespText,'true' as RespEstado ,'exito' as RespClass
 		--DBCC CHECKIDENT ('dbo.tb_documentos', RESEED, 0); 
@@ -112,8 +112,10 @@ GO
 
 drop Procedure [dbo].[SP_LISTA_PACIENTE]
 Create Procedure [dbo].[SP_LISTA_PACIENTE]
+@busqueda varchar(250) =''
 as
 select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg] from TB_USUARIO_SALUD
+where [usu_nombres] like '%'+@busqueda+'%'
 ORDER BY feg_reg DESC
 GO
 
@@ -124,4 +126,8 @@ DELETE FROM [dbo].[TB_COD]
 DELETE FROM [dbo].[TB_USUARIO_SALUD]
 */
 
-select * from dbo.TB_USUARIO_SISTEMA
+CREATE PROC SP_ACTUALIZAR_PWD
+@login_user VARCHAR(25), @pass_user varchar(max)
+AS
+update TB_USUARIO_SISTEMA set pass_user = @pass_user where login_user = @login_user
+GO

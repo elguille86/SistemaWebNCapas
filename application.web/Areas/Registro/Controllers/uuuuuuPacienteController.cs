@@ -16,7 +16,7 @@ namespace application.web.Areas.Registro.Controllers
 
         public ActionResult lista() {
              
-             return View(PacienteService.BL_ListaPaciente("fff"));
+             return View(PacienteService.BL_ListaPaciente());
         }
         public ActionResult Index()
         {

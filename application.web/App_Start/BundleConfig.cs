@@ -50,8 +50,7 @@ namespace application.web
                       
                       "~/themes/bootstrap.min.js",
                       "~/themes/bootstrap3-wysihtml5.all.min",
-                      "~/Scripts/jquery.bootgrid.min.js",
-                      "~/Scripts/jquery.bootgrid.fa.min.js",
+ 
                       "~/themes/slimScroll/jquery.slimscroll.min.js",
 
 
@@ -67,38 +66,36 @@ namespace application.web
             //"~/themes/jQuery-2.1.4.min.js",
                   //"~/themes/app.min.js",
                   //    "~/themes/dashboard.js",
-            
 
-            bundles.Add(new ScriptBundle("~/themes/jwq").Include(
-                      
 
-                "~/themes/jqwidgets/gettheme.js",
-                "~/themes/jqwidgets/jqxcore.js" ,
-                "~/themes/jqwidgets/jqxdata.js" ,
-                "~/themes/jqwidgets/jqxmenu.js" ,
-                "~/themes/jqwidgets/jqxbuttons.js" ,
-                "~/themes/jqwidgets/jqxscrollbar.js",
-                "~/themes/jqwidgets/jqxmenu.js"  ,
-                "~/themes/jqwidgets/jqxexpander.js", 
-                "~/themes/jqwidgets/jqxdropdownlist.js" ,
-                "~/themes/jqwidgets/jqxlistbox.js" ,
-                "~/themes/jqwidgets/jqxgrid.js" ,
-                "~/themes/jqwidgets/jqxgrid.selection.js",
-                "~/themes/jqwidgets/jqxgrid.columnsresize.js" ,
-                "~/themes/jqwidgets/jqxgrid.pager.js" ,
-                "~/themes/jqwidgets/jqxgrid.filter.js" ,
-                "~/themes/jqwidgets/jqxgrid.export.js" ,
-                "~/themes/jqwidgets/jqxpanel.js" ,
-                "~/themes/jqwidgets/jqxwindow.js" , 
-                "~/themes/jqwidgets/jqxtabs.js" ,
-                "~/themes/jqwidgets/jqxcheckbox.js"  
+            bundles.Add(new ScriptBundle("~/jqwidgets").Include(
+                "~/jqwidgets/gettheme.js",
+                "~/jqwidgets/jqxcore.js" ,
+                "~/jqwidgets/jqxdata.js" ,
+                "~/jqwidgets/jqxmenu.js" ,
+                "~/jqwidgets/jqxbuttons.js" ,
+                "~/jqwidgets/jqxscrollbar.js",
+                "~/jqwidgets/jqxmenu.js"  ,
+                "~/jqwidgets/jqxexpander.js", 
+                "~/jqwidgets/jqxdropdownlist.js" ,
+                "~/jqwidgets/jqxlistbox.js" ,
+                "~/jqwidgets/jqxgrid.js" ,
+                "~/jqwidgets/jqxgrid.selection.js",
+                "~/jqwidgets/jqxgrid.columnsresize.js" ,
+                "~/jqwidgets/jqxgrid.pager.js" ,
+                "~/jqwidgets/jqxgrid.filter.js" ,
+                "~/jqwidgets/jqxgrid.export.js" ,
+                "~/jqwidgets/jqxpanel.js" ,
+                "~/jqwidgets/jqxwindow.js" , 
+                "~/jqwidgets/jqxtabs.js" ,
+                "~/jqwidgets/jqxcheckbox.js"  
 
                     
                       ));
 
-            bundles.Add(new StyleBundle("~/themes/CssJqw").Include(
-                     "~/themes//jqwidgets/styles/jqx.base.css" ,
-"~/themes//jqwidgets/styles/jqx.energyblue.css" ));
+            bundles.Add(new StyleBundle("~/jqwidgets/styles").Include(
+                     "~/jqwidgets/styles/jqx.base.css" ,
+"~/jqwidgets/styles/jqx.energyblue.css" ));
         }
     }
 }

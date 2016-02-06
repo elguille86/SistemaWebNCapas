@@ -10,6 +10,6 @@ namespace application.DAC
     public interface IPacienteRepositorio  
     {
         IList<RespuestaGlobal> DAC_InsertaPaciente(Paciente Model);
-        IList<Paciente> DAC_ListaPaciente(string busqueda);
+        IList<Paciente> DAC_ListaPaciente( );
     }
 }

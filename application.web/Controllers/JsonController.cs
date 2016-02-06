@@ -20,9 +20,9 @@ namespace application.web.Controllers
         //public int Identificacion { get; set; }
         //public string CiudadDeOrigen { get; set; }
         //}
-        public ActionResult Json1(string searchPhrase )
+        public ActionResult Json1(  )
         {
-            IList<Entity.Paciente> Lista = PacienteService.BL_ListaPaciente(searchPhrase);
+            IList<Entity.Paciente> Lista = PacienteService.BL_ListaPaciente( );
                 
             /*
             List<Estudiante> estudiantes = new List<Estudiante>();

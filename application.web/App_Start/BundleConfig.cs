@@ -43,9 +43,9 @@ namespace application.web
                       "~/themes/bootstrap.min.css",
                       "~/themes/AdminLTE.min.css",
                       "~/themes/style.css",
-                      "~/themes/jquery.bootgrid/jquery.bootgrid.min.css",
+                     
                       "~/themes/_all-skins.min.css"));
-
+            // "~/themes/jquery.bootgrid/jquery.bootgrid.min.css",
             bundles.Add(new ScriptBundle("~/themes/js").Include(
                       
                       "~/themes/bootstrap.min.js",
@@ -54,17 +54,51 @@ namespace application.web
                       "~/Scripts/jquery.bootgrid.fa.min.js",
                       "~/themes/slimScroll/jquery.slimscroll.min.js",
 
-                      "~/themes/jquery.bootgrid/jquery.bootgrid.min.js",
-                      "~/themes/jquery.bootgrid/jquery.bootgrid.fa.min.js",
+
                         "~/themes/app.min.js",
  
                       "~/themes/demo.js" 
                     
                       ));
+            // "~/themes/jquery.bootgrid/jquery.bootgrid.min.js",
+            //   "~/themes/jquery.bootgrid/jquery.bootgrid.fa.min.js",
+
+
             //"~/themes/jQuery-2.1.4.min.js",
                   //"~/themes/app.min.js",
                   //    "~/themes/dashboard.js",
             
+
+            bundles.Add(new ScriptBundle("~/themes/jwq").Include(
+                      
+
+                "~/themes/jqwidgets/gettheme.js",
+                "~/themes/jqwidgets/jqxcore.js" ,
+                "~/themes/jqwidgets/jqxdata.js" ,
+                "~/themes/jqwidgets/jqxmenu.js" ,
+                "~/themes/jqwidgets/jqxbuttons.js" ,
+                "~/themes/jqwidgets/jqxscrollbar.js",
+                "~/themes/jqwidgets/jqxmenu.js"  ,
+                "~/themes/jqwidgets/jqxexpander.js", 
+                "~/themes/jqwidgets/jqxdropdownlist.js" ,
+                "~/themes/jqwidgets/jqxlistbox.js" ,
+                "~/themes/jqwidgets/jqxgrid.js" ,
+                "~/themes/jqwidgets/jqxgrid.selection.js",
+                "~/themes/jqwidgets/jqxgrid.columnsresize.js" ,
+                "~/themes/jqwidgets/jqxgrid.pager.js" ,
+                "~/themes/jqwidgets/jqxgrid.filter.js" ,
+                "~/themes/jqwidgets/jqxgrid.export.js" ,
+                "~/themes/jqwidgets/jqxpanel.js" ,
+                "~/themes/jqwidgets/jqxwindow.js" , 
+                "~/themes/jqwidgets/jqxtabs.js" ,
+                "~/themes/jqwidgets/jqxcheckbox.js"  
+
+                    
+                      ));
+
+            bundles.Add(new StyleBundle("~/themes/CssJqw").Include(
+                     "~/themes//jqwidgets/styles/jqx.base.css" ,
+"~/themes//jqwidgets/styles/jqx.energyblue.css" ));
         }
     }
 }

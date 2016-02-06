@@ -30,7 +30,8 @@ namespace application.web.Controllers
             estudiantes.Add(new Estudiante { Id = 2 , Nombre = "El chapulin Colorado", CiudadDeOrigen = "Mexico D.F", Edad = 35, Identificacion = 555 });
             estudiantes.Add(new Estudiante { Id =  3 , Nombre = "Godines", CiudadDeOrigen = "Acapulco", Edad = 8, Identificacion = 789 });
             */
-            return Json(new { current = 1, rowCount = 10, total = Lista.Count(), rows = Lista, }, JsonRequestBehavior.DenyGet); 
+            //return Json(new { current = 1, rowCount = 10, total = Lista.Count(), rows = Lista, }, JsonRequestBehavior.DenyGet); 
+            return Json(new { result = Lista }, JsonRequestBehavior.AllowGet); 
            // return Json(new { result = estudiantes }, JsonRequestBehavior.DenyGet); 
         }
     }

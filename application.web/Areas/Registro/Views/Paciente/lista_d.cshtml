@@ -1,0 +1,53 @@
+﻿ 
+@{
+    ViewBag.Title = "lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listar Pacientes</h2>
+
+<p>
+    @Html.ActionLink("Registar Paciente", "Index")
+</p>
+ 
+ 
+ <div>@Html.Raw(TempData["mensajeserver"])</div>
+
+<table id="grid-data" class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th data-column-id="usu_numdoc" data-type="numeric">DNi</th>
+            <th data-column-id="usu_nombres" data-type="numeric">Nombre</th>
+            <th data-column-id="usu_apepaterno"> Ape Pa </th>
+            <th data-column-id="usu_apematerno" data-order="desc">Ape Ma</th>
+            <th data-column-id="usu_fechanac" >Link</th>
+            
+        </tr>
+    </thead>
+</table>
+<input type="button" id="btn" value="Actualizar"/>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function(){  
+            $("#grid-data").bootgrid({
+                ajax: true,
+                post: function () {
+                    /* To accumulate custom parameter with the request object */
+                    return {
+                        id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+                    };
+                },
+                url: "/Json/Json1",
+                formatters: {
+                    "link": function (column, row) {
+                        return "<a href=\"#\">" + column.usu_nombres + ": " + row.usu_nombres + "</a>";
+                    }
+                }
+            }) ;
+
+        });
+        </script>
+
+    } 

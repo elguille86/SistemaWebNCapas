@@ -48,7 +48,7 @@ namespace application.web.Controllers
                     Session["NombreUsuario"] = Mirespuesta[0].ResNombre;   
                     
 
- 
+                        
 
 
 

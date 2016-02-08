@@ -155,7 +155,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <h1> Sistema ERP ( Prueba )
+                <h1> @ViewBag.TitlePag
                     <small>Current version 2.3.0</small>
                 </h1>
                 <ol class="breadcrumb">
@@ -166,9 +166,7 @@
 
             <!-- Main content -->
             <div class="content body">
-
                 @RenderBody()
-
             </div><!-- /.content -->
         </div><!-- /.content-wrapper -->
 
@@ -201,6 +199,4 @@
         @Scripts.Render("~/jqwidgets")
         @RenderSection("scripts", required: false)
 </section>
-</body>
-
-</html>
+</body></html>

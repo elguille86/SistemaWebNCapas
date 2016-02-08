@@ -3,20 +3,13 @@
     ViewBag.Title = "lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Listar Pacientes</h2>
-
-<p>
-    @Html.ActionLink("Registar Paciente", "Index")
-</p>
- 
- 
- <div>@Html.Raw(TempData["mensajeserver"])</div>
+<p>  @Html.ActionLink("Registar Paciente", "Index")</p> 
+<div>@Html.Raw(TempData["mensajeserver"])</div>
 <input type="button" id="btnrefescar" value="Actualizar" />
  
     <div id="jqxgrid"></div>
 
-    
+  
 
     @section scripts{
 

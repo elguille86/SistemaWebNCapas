@@ -13,13 +13,14 @@ namespace application.web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            
+            ViewBag.TitlePag = "Sistema ERP";
             return View();
         }
 
         [AllowAnonymous]
         public ActionResult About()
         {
+            ViewBag.TitlePag = "Informacion";
             ViewBag.Message = "Descripcion de la aplicacion";
             return View();
         }
@@ -27,6 +28,7 @@ namespace application.web.Controllers
         
         public ActionResult Contact()
         {
+            ViewBag.TitlePag = "Soporte";
             ViewBag.Message = "Contacto de Soporte";           
             ViewBag.ApplicationUser = this.User.Identity.IsAuthenticated ? this.User.Identity.Name : "Anonymous";           
             return View();

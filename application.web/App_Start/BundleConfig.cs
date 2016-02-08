@@ -50,15 +50,17 @@ namespace application.web
                       
                       "~/themes/bootstrap.min.js",
                       "~/themes/bootstrap3-wysihtml5.all.min",
- 
                       "~/themes/slimScroll/jquery.slimscroll.min.js",
-
-
                         "~/themes/app.min.js",
- 
                       "~/themes/demo.js" 
                     
                       ));
+
+
+
+
+
+
             // "~/themes/jquery.bootgrid/jquery.bootgrid.min.js",
             //   "~/themes/jquery.bootgrid/jquery.bootgrid.fa.min.js",
 

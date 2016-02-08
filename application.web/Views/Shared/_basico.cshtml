@@ -10,7 +10,7 @@
         <div class="container">
             <div class="navbar-header">
  
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+               
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -19,13 +19,12 @@
                    
                      @if (Request.IsAuthenticated)
                         {
-                        //Se visualiza cuando el usuario se encuentra autenticado en el sistema
                          
     <li>
         @Html.ActionLink("Hola " + Html.Encode(User.Identity.Name) + "!", "Index", "#", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>
 
-
+ 
                         <li>@Html.ActionLink("Salir", "LogOut", "Seguridad")</li>
                         }
                      else

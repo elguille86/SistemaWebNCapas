@@ -12,12 +12,9 @@ namespace application.web.Controllers
 {
     [Authorize]
     public class SeguridadController : Controller
-    {
-        
+    {        
         private application.BL.IUsuariosService UsuarioService = new application.BL.UsuariosService();
-   
         private application.BL.Configuracion.FuncionGeneral FunGen = new BL.Configuracion.FuncionGeneral();
-       
         
         // GET: Seguridad
         public ActionResult Index()
@@ -27,6 +24,7 @@ namespace application.web.Controllers
         [AllowAnonymous]
         public ActionResult login()
         {
+            ViewBag.TitlePag = "Login";
             return View();
         }
 
@@ -37,7 +35,6 @@ namespace application.web.Controllers
         {
             if (ModelState.IsValid)
             {
- 
                 IList<RespuestaUsuario> Mirespuesta = this.FunGen.Isvalida(Elmodel);
                 if (Mirespuesta  != null)
                 {
@@ -46,25 +43,15 @@ namespace application.web.Controllers
                     RespuestaUsuario Respue = new RespuestaUsuario();
                     //System.Web.HttpContext.Current.Session["NombreUsuario"] = Mirespuesta[0].ResNombre;
                     Session["NombreUsuario"] = Mirespuesta[0].ResNombre;   
-                    
-
-                        
-
-
-
-
-
-
-
                     this.Response.Cookies.Add(auth);
                     ViewBag.nom = User.Identity.Name;
                     return RedirectToAction("Index","Home");
                 }
                 else
                 {
-                   return new HttpStatusCodeResult(401);
-
- 
+                   //return new HttpStatusCodeResult(401);
+                    ViewBag.msgerror = "Error de Usuario y/o Contraseña";
+                    return View();
                 }
             }
             else
@@ -104,7 +91,7 @@ namespace application.web.Controllers
 
 
         public ActionResult NewUser() {
-
+            ViewBag.TitlePag = "Nuevo Usuario";
             //List<string> petList = new List<string>();
             //petList.Add("Dog");
             //petList.Add("Cat");
@@ -129,6 +116,25 @@ namespace application.web.Controllers
         
             return View();
         }
+        public ActionResult Changepass()
+        {
 
+            ViewBag.TitlePag = "Cambiar Clave";
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Changepass(PassUsuario model)
+        {
+
+            ViewBag.TitlePag = "Cambiar Clave";
+            if (ModelState.IsValid) { return View(); }
+            else
+            {
+                return HttpNotFound(" No se encuentra Disponible la Aplicacion");
+            }
+       
+        }
     }
 }

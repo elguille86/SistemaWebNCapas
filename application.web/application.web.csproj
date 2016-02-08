@@ -517,6 +517,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial_Menu.cshtml" />
     <Content Include="Views\Seguridad\NewUser.cshtml" />
+    <Content Include="Views\Seguridad\Changepass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

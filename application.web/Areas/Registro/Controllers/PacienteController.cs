@@ -15,11 +15,12 @@ namespace application.web.Areas.Registro.Controllers
         // GET: Registro/Default
 
         public ActionResult lista() {
-             
+            ViewBag.TitlePag = "Lista Paciente";
              return View();
         }
         public ActionResult Index()
         {
+            ViewBag.TitlePag = "Registrar Paciente";
             return View();
         }
         [HttpPost]
@@ -28,8 +29,6 @@ namespace application.web.Areas.Registro.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 IList<RespuestaGlobal> respuesta = this.PacienteService.BL_InsertaPaciente(Model);
 
                 if (respuesta.Count() > 0)

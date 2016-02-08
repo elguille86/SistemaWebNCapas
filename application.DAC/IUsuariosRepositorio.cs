@@ -10,5 +10,6 @@ namespace application.DAC
     public interface IUsuariosRepositorio  
     {
         IList<RespuestaUsuario> ValidaAcceso(Usuario Model);
+        //IList<RespuestaGlobal> DAC_ChangePwd(string usuario, string pwd);
     }
 }

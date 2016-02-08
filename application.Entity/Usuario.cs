@@ -21,21 +21,7 @@ namespace application.Entity
     }
 
 
-
-    public class PassUsuario
-    {
-        [Required]
-        [Display(Name = "Usuario")]
-        public string segusuario { get; set; }
-        [Required]
-        [Display(Name = "Contraseña")]
-        [DataType(DataType.Password)]
-        public string segpass01 { get; set; }
-        [Required]
-        [Display(Name = "Repetir Contraseña")]
-        [DataType(DataType.Password)]
-        public string segpass02 { get; set; }
-    }
+ 
     public class RespuestaUsuario
     {
         public string ResUsuario { get; set; }

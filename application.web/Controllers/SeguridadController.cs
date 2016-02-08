@@ -113,26 +113,65 @@ namespace application.web.Controllers
         {
             string textBoxNameValue = Request["txtnombre"];
             form["txtnombre"] = textBoxNameValue;
-        
             return View();
         }
         public ActionResult Changepass()
         {
-
             ViewBag.TitlePag = "Cambiar Clave";
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Changepass(PassUsuario model)
+        public ActionResult Changepass( FormCollection form)
         {
+            
+            if (ModelState.IsValid) {
+                ViewBag.TitlePag = "Cambiar Clave";
+                string texto = "";
+  
+                string segpass01 = Request["segpass01"].Trim(); 
+                string segPasswordConfirmacion = Request["segPasswordConfirmacion"].Trim();
+                if ( (segpass01 == segPasswordConfirmacion) && ( segpass01 != ""  && segPasswordConfirmacion != "" ) )
+                {
+                    //IList<RespuestaGlobal> Mirespuesta = UsuarioService.BL_ChangePwd(User.Identity.Name, segpass01);
 
-            ViewBag.TitlePag = "Cambiar Clave";
-            if (ModelState.IsValid) { return View(); }
+
+                    //if (Mirespuesta != null)
+                    //{
+
+                    //    texto = Mirespuesta[0].RespText;
+                    //    string cls = Mirespuesta[0].RespClass;
+                    //    string respue = ("<div class='" + cls + "'>" + texto + "</div>");
+                    //    TempData["mensajeserver"] = respue;
+                    //    if (Mirespuesta[0].RespEstado == "true")
+                    //    {
+                    //        return RedirectToAction("Index", "Home", new { area = "" });
+                    //    }
+
+                        
+                    //}
+                    //else
+                    //{
+                    //    //return new HttpStatusCodeResult(401);
+                    //    ViewBag.msgerror = "Error de Usuario y/o Contraseña";
+                    //    return View();
+                    //}
+                    ViewBag.TitlePag = "Cambiar Clave (111)";
+                    return View(); 
+
+
+                }
+                else {
+                    texto = "Las Claves no coninciden";
+
+                    ViewBag.msgerror = texto;
+                    return View(); 
+                }
+            }
             else
             {
-                return HttpNotFound(" No se encuentra Disponible la Aplicacion");
+                return HttpNotFound(" No se encuentra Disponible la Aplicacion ...");
             }
        
         }

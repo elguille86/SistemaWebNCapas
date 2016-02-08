@@ -1,30 +1,26 @@
-﻿@model application.Entity.PassUsuario
-
+﻿ 
 @{
     ViewBag.Title = "Changepass";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PassUsuario</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.segpass01, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.segpass01, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.segpass01, "", new { @class = "text-danger" })
+            <label class="control-label col-md-2" >Contraseña</label>
+            <div class="col-md-10">                
+                @Html.TextBox("segpass01", null, new { id = "name", @class = "form-control text-box single-line", Type = "password" })        
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.segpass02, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Confirmar Contraseña</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.segpass02, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.segpass02, "", new { @class = "text-danger" })
+                @Html.TextBox("segPasswordConfirmacion", null, new { id = "name", @class = "form-control text-box single-line", Type = "password" })
             </div>
         </div>
 
@@ -34,6 +30,7 @@
             </div>
         </div>
     </div>
+    <div class="text-danger field-validation-error">@ViewBag.msgerror</div>
 }
 
 <div>

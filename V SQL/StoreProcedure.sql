@@ -129,5 +129,16 @@ DELETE FROM [dbo].[TB_USUARIO_SALUD]
 CREATE PROC SP_ACTUALIZAR_PWD
 @login_user VARCHAR(25), @pass_user varchar(max)
 AS
-update TB_USUARIO_SISTEMA set pass_user = @pass_user where login_user = @login_user
+
+	if exists (select * from TB_USUARIO_SISTEMA where login_user = @login_user      )
+			begin
+				update TB_USUARIO_SISTEMA set pass_user = @pass_user where login_user = @login_user
+				select 'Contraseña Actualizada con Exito ' as RespText,'true' as RespEstado ,'exito' as RespClass
+			end
+			else 
+			begin
+				select  'Error al Actualizar clave' as RespText,'flase' as RespEstado,'error' as RespClass	
+			end
+
+
 GO

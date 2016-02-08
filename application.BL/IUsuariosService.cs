@@ -15,6 +15,6 @@ namespace application.BL
         //string HASKEY = ConfigurationManager.AppSettings["HASH_KEY"].ToString();
         IList<RespuestaUsuario> BL_ValidaAcceso(Usuario Model);
 
- 
+        //IList<RespuestaGlobal> BL_ChangePwd(string usuario, string pwd);
     }
 }

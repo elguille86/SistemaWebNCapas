@@ -18,12 +18,12 @@ namespace application.BL
         {
             return this.UsuarioRespositorio.ValidaAcceso(Model);
         }
- /*
+ 
         public IList<RespuestaGlobal> BL_ChangePwd(string usuario, string pwd)
         {
             pwd = FunGen.Encrypt(pwd);
             return this.UsuarioRespositorio.DAC_ChangePwd(usuario, pwd);
         }
-        */
+       
     }
 }

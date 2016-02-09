@@ -8,19 +8,22 @@ using System.Configuration;
 using System.Data.SqlClient;
 using Dapper;
 using System.Data;
-using System.Data.Entity;
+//using System.Data.Entity;
 
 
 namespace application.DAC
 {
     public class PacienteRepositorio : IPacienteRepositorio
     {
-        private string ConnectionString = null;
+        private string ConnectionString = null;ClsConexion ClsCone ;
         public PacienteRepositorio()
         {
-            this.ConnectionString =
-                ConfigurationManager.ConnectionStrings["BDSistema"].ConnectionString;
+            ClsCone = new ClsConexion();
+            this.ConnectionString = ClsCone.CadenaCN().ToString();
+                //ConfigurationManager.ConnectionStrings["BDSistema"].ConnectionString;
         }
+
+ 
         public IList<Entity.RespuestaGlobal> DAC_InsertaPaciente(Entity.Paciente Model)
         {
             IList<Entity.RespuestaGlobal> respuesta = null;

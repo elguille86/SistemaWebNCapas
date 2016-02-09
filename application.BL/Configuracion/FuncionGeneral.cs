@@ -16,8 +16,6 @@ namespace application.BL.Configuracion
 {
     public class FuncionGeneral
     {
-        
-        private application.BL.IUsuariosService UsuarioService = new application.BL.UsuariosService();
         private string HASKEY = null;
         public FuncionGeneral()
         {
@@ -73,33 +71,18 @@ namespace application.BL.Configuracion
         }
 
         #endregion Funciones
- 
 
         public IList<RespuestaUsuario> Isvalida(Usuario ModeloUsuario)
         {
-           
-            //DataTable Isvalid =  new DataTable();;
-            //Isvalid.Columns.Add("ResUsuario");
-            //Isvalid.Columns.Add("ResPass");
-            //Isvalid.Columns.Add("RepDNI");
-            //Isvalid.Columns.Add("RedRol");
-             
-
+            application.BL.IUsuariosService UsuarioService = new application.BL.UsuariosService();
             ModeloUsuario.pass = this.Encrypt(ModeloUsuario.pass);
             string pass = this.Encrypt(ModeloUsuario.pass);
-            IList<RespuestaUsuario> respuesta = this.UsuarioService.BL_ValidaAcceso(ModeloUsuario);
-
+            IList<RespuestaUsuario> respuesta =  UsuarioService.BL_ValidaAcceso(ModeloUsuario);
             if (respuesta.Count() > 0)
             {
                 string pass2 = respuesta[0].ResPass.ToString().Trim();
                 if (ModeloUsuario.pass == pass2)
                 {
-                    //var row = Isvalid.NewRow();
-                    //row["ResUsuario"] = respuesta[0].ResUsuario.ToString().Trim();
-                    //row["ResPass"] = respuesta[0].ResPass.ToString().Trim();
-                    //row["RepDNI"] = respuesta[0].RepDNI.ToString().Trim();
-                    //row["RedRol"] = respuesta[0].RedRol.ToString().Trim();
-                    //Isvalid.Rows.Add(row);
                     return  respuesta;
                 }
             }

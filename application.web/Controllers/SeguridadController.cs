@@ -59,9 +59,7 @@ namespace application.web.Controllers
                 return HttpNotFound(" No se encuentra Disponible la Aplicacion");
             }
         }
-
-
-
+ 
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -70,25 +68,6 @@ namespace application.web.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-
-        //private bool Isvalid(Usuario ModeloUsuario)
-        //{
-        //    bool Isvalid = false;
-        //    string pass = ModeloUsuario.pass;
-        //    IList<RespuestaUsuario> respuesta = this.UsuarioService.BL_ValidaAcceso(ModeloUsuario);
-
-        //    if (respuesta.Count() > 0)
-        //    {
-        //        string pass2 = respuesta[0].ResPass.ToString().Trim();
-        //        if (pass == pass2)
-        //        {
-        //            Isvalid = true;
-        //        }
-        //    }
-        //    return Isvalid;
-        //}
-
-
 
         public ActionResult NewUser() {
             ViewBag.TitlePag = "Nuevo Usuario";
@@ -115,6 +94,7 @@ namespace application.web.Controllers
             form["txtnombre"] = textBoxNameValue;
             return View();
         }
+
         public ActionResult Changepass()
         {
             ViewBag.TitlePag = "Cambiar Clave";
@@ -134,37 +114,31 @@ namespace application.web.Controllers
                 string segPasswordConfirmacion = Request["segPasswordConfirmacion"].Trim();
                 if ( (segpass01 == segPasswordConfirmacion) && ( segpass01 != ""  && segPasswordConfirmacion != "" ) )
                 {
-                    //IList<RespuestaGlobal> Mirespuesta = UsuarioService.BL_ChangePwd(User.Identity.Name, segpass01);
-
-
-                    //if (Mirespuesta != null)
-                    //{
-
-                    //    texto = Mirespuesta[0].RespText;
-                    //    string cls = Mirespuesta[0].RespClass;
-                    //    string respue = ("<div class='" + cls + "'>" + texto + "</div>");
-                    //    TempData["mensajeserver"] = respue;
-                    //    if (Mirespuesta[0].RespEstado == "true")
-                    //    {
-                    //        return RedirectToAction("Index", "Home", new { area = "" });
-                    //    }
-
-                        
-                    //}
-                    //else
-                    //{
-                    //    //return new HttpStatusCodeResult(401);
-                    //    ViewBag.msgerror = "Error de Usuario y/o Contraseña";
-                    //    return View();
-                    //}
-                    ViewBag.TitlePag = "Cambiar Clave (111)";
-                    return View(); 
-
-
+                    IList<RespuestaGlobal> Mirespuesta = UsuarioService.BL_ChangePwd(User.Identity.Name, segpass01);
+                    if (Mirespuesta != null)
+                    {
+                        texto = Mirespuesta[0].RespText;
+                        string cls = Mirespuesta[0].RespClass;
+                        string respue = ("<div class='" + cls + "'>" + texto + "</div>");
+                        TempData["mensajeserver"] = respue;
+                        if (Mirespuesta[0].RespEstado == "true")
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "" });
+                        }
+                        else {
+                            ViewBag.msgerror = texto;
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        //return new HttpStatusCodeResult(401);
+                        ViewBag.msgerror = "Error de Usuario y/o Contraseña";
+                        return View();
+                    }
                 }
                 else {
                     texto = "Las Claves no coninciden";
-
                     ViewBag.msgerror = texto;
                     return View(); 
                 }

@@ -94,10 +94,11 @@ namespace application.web
 
                     
                       ));
+ 
 
             bundles.Add(new StyleBundle("~/jqwidgets/styles").Include(
                      "~/jqwidgets/styles/jqx.base.css" ,
-"~/jqwidgets/styles/jqx.energyblue.css" ));
+"~/jqwidgets/styles/jqx.metrodark.css"));
         }
     }
 }

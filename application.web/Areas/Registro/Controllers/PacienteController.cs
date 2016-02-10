@@ -12,6 +12,7 @@ namespace application.web.Areas.Registro.Controllers
     public class PacienteController : Controller
     {
         private application.BL.IPacienteService PacienteService = new application.BL.PacienteService();
+        private application.BL.Configuracion.FuncionGeneral ConG = new application.BL.Configuracion.FuncionGeneral();
         // GET: Registro/Default
 
         public ActionResult lista() {
@@ -27,6 +28,7 @@ namespace application.web.Areas.Registro.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(Paciente Model)
         {
+            ViewBag.TitlePag = "Registrar Paciente";
             if (ModelState.IsValid)
             {
                 IList<RespuestaGlobal> respuesta = this.PacienteService.BL_InsertaPaciente(Model);
@@ -62,5 +64,12 @@ namespace application.web.Areas.Registro.Controllers
            
         }
 
+
+        public ActionResult editpac(string id) {
+            ViewBag.TitlePag = "Editar Paciente";
+            id  = ConG.Decrypt(id);
+            ViewBag.Codigo = id;
+            return View();
+        }
     }
 }

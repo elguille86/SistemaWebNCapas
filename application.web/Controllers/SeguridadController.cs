@@ -25,7 +25,15 @@ namespace application.web.Controllers
         public ActionResult login()
         {
             ViewBag.TitlePag = "Login";
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else {
+                return View();
+            }
+
+            
         }
 
         [AllowAnonymous]

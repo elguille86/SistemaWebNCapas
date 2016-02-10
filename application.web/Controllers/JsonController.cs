@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using application.Entity;
+ 
 
 namespace application.web.Controllers
 {
@@ -12,6 +13,7 @@ namespace application.web.Controllers
     public class JsonController : Controller
     {
         private application.BL.IPacienteService PacienteService = new application.BL.PacienteService();
+        private application.BL.Configuracion.FuncionGeneral ConG = new application.BL.Configuracion.FuncionGeneral();
         //public class Estudiante
         //{
         //public int Id { get; set; }
@@ -23,7 +25,12 @@ namespace application.web.Controllers
         public ActionResult Json1(  )
         {
             IList<Entity.Paciente> Lista = PacienteService.BL_ListaPaciente( );
-                
+
+            for (int i = 0; i < Lista.Count; i++)
+            {
+                Lista[i].CodPac = this.ConG.Encrypt(Lista[i].CodPac);
+            }
+ 
             /*
             List<Estudiante> estudiantes = new List<Estudiante>();
             estudiantes.Add(new Estudiante {Id= 1 , Nombre = "Jaimito el cartero", CiudadDeOrigen = "Tangamandapio", Edad = 50, Identificacion = 123 });

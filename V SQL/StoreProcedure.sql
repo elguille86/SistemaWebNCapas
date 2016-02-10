@@ -142,3 +142,13 @@ AS
 
 
 GO
+
+drop Procedure [dbo].[SP_DETALLEPACIENTE]
+Create Procedure [dbo].[SP_DETALLEPACIENTE]
+@usu_numdoc varchar(250) =''
+as
+select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg] from TB_USUARIO_SALUD
+where usu_numdoc  = @usu_numdoc 
+ORDER BY feg_reg DESC
+GO
+ 

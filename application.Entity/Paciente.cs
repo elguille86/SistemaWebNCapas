@@ -35,6 +35,9 @@ namespace application.Entity
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string usu_fechanac { get; set; }
 
+
+        public string CodPac { get; set; }
+
        
 
     }

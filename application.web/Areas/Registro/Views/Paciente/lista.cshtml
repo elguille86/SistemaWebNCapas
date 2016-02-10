@@ -5,7 +5,9 @@
 }
 <p>  @Html.ActionLink("Registar Paciente", "Index")</p> 
 <div>@Html.Raw(TempData["mensajeserver"])</div>
-<input type="button" id="btnrefescar" value="Actualizar" />
+ 
+    <input type="button" id="btnrefescar" value="Actualizar" class="pull-left btn btn-default" />
+<br/><br /> 
  
     <div id="jqxgrid"></div>
 
@@ -30,7 +32,7 @@
         }
         $("#jqxgrid").bind('pagechanged', function () { var datainfo = $("#jqxgrid").jqxGrid('getdatainformation'); var paginginfo = datainfo.paginginformation; self.label.text(1 + paginginfo.pagenum * paginginfo.pagesize + "-" + Math.min(datainfo.rowscount, (paginginfo.pagenum + 1) * paginginfo.pagesize) + ' de ' + datainfo.rowscount); }); var dataAdapter = new $.jqx.dataAdapter(source);
         $("#jqxgrid").jqxGrid({
-            theme: theme, width: 700, columnsresize: true, pageable: true, pagesize: 800, height: 400, showfilterrow: true, filterable: true, source: dataAdapter, pagerrenderer: pagerrenderer, selectionmode: 'multiplecellsadvanced', columnsresize: true,
+            theme: theme, width: 800, columnsresize: true, pageable: true, pagesize: 800, height: 400, showfilterrow: true, filterable: true, source: dataAdapter, pagerrenderer: pagerrenderer, selectionmode: 'multiplecellsadvanced', columnsresize: true,
             columns: [
               { text: 'DNI', datafield: 'usu_numdoc', width: 90 }, { text: 'Nombre', datafield: 'usu_nombres' }, { text: 'ApeP', datafield: 'usu_apepaterno' }, { text: 'ApeM', datafield: 'usu_apematerno' },
             ]

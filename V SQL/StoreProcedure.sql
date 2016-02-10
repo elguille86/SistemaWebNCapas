@@ -125,7 +125,7 @@ GO
 DELETE FROM [dbo].[TB_COD]
 DELETE FROM [dbo].[TB_USUARIO_SALUD]
 */
-
+ 
 CREATE PROC SP_ACTUALIZAR_PWD
 @login_user VARCHAR(25), @pass_user varchar(max)
 AS

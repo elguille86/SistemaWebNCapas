@@ -114,7 +114,9 @@ drop Procedure [dbo].[SP_LISTA_PACIENTE]
 Create Procedure [dbo].[SP_LISTA_PACIENTE]
 @busqueda varchar(250) =''
 as
-select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg] from TB_USUARIO_SALUD
+select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg]
+, [usu_docid_codigo] as CodPac 
+ from TB_USUARIO_SALUD
 where [usu_nombres] like '%'+@busqueda+'%'
 ORDER BY feg_reg DESC
 GO

@@ -13,11 +13,21 @@ namespace Proyecto.UnitTest
     [TestFixture]
     public class ConfigServiceTest
     {
-        [Test]
-        public void EncriptaTest() {
-            string valor = "sdf";
-             
-            var repository = Substitute.For<IFuncionGeneral>()
+        public string valorSimple = "developer";
+        public string valorHAS = "56FYpKBhYEaj5q/t4nJTpJteyL4UMdrQtpcVGCQvFik=";
+        [TestCase]
+        public void EncriptaDatoTest() {
+            var repository = Substitute.For<IFuncionGeneral>();
+            repository.Encrypt(this.valorSimple).Returns(this.valorHAS);
+            Assert.That(repository.Encrypt(this.valorSimple), Is.EqualTo(this.valorHAS));
+        }
+
+        [TestCase]
+        public void DescriptaDatoTest()
+        {
+            var repository = Substitute.For<IFuncionGeneral>();
+            repository.Decrypt(this.valorHAS).Returns(this.valorSimple);
+            Assert.That(repository.Decrypt(this.valorHAS), Is.EqualTo(this.valorSimple));
         }
     }
 }

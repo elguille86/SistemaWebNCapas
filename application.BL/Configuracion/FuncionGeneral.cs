@@ -14,7 +14,7 @@ using application.BL;
 
 namespace application.BL.Configuracion
 {
-    public class FuncionGeneral
+    public class FuncionGeneral : IFuncionGeneral
     {
         private string HASKEY = null;
         public FuncionGeneral()

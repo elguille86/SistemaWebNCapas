@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9631B718-E6B6-430E-84C7-7AFC5AACD61F}</ProjectGuid>
+    <ProjectGuid>{48016A1D-3880-4947-B2FB-486D0324AF42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>application.BL</RootNamespace>
-    <AssemblyName>application.BL</AssemblyName>
+    <RootNamespace>Proyecto.UnitTest</RootNamespace>
+    <AssemblyName>Proyecto.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute, Version=1.9.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.1.9.2.0\lib\net45\NSubstitute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,15 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuracion\FuncionGeneral.cs" />
-    <Compile Include="Configuracion\IFuncionGeneral.cs" />
-    <Compile Include="IPacienteService.cs" />
-    <Compile Include="IUsuariosService.cs" />
-    <Compile Include="PacienteService.cs" />
+    <Compile Include="ConfigServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsuariosService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\application.BL\application.BL.csproj">
+      <Project>{9631b718-e6b6-430e-84c7-7afc5aacd61f}</Project>
+      <Name>application.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\application.DAC\application.DAC.csproj">
       <Project>{488821f9-0819-4d25-a3bf-bb6668ec4f04}</Project>
       <Name>application.DAC</Name>

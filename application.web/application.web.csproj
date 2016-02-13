@@ -129,6 +129,24 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelConfig.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelConfig.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelConfig.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelConfig.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelConfig.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelConfig.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tv_TipoEstado.cs">
+      <DependentUpon>ModelConfig.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -577,6 +595,23 @@
     <Content Include="Areas\Registro\Views\Paciente\Index.cshtml" />
     <Content Include="Areas\Registro\Views\Paciente\lista.cshtml" />
     <Content Include="Areas\Registro\Views\Paciente\editpac.cshtml" />
+    <EntityDeploy Include="Models\ModelConfig.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelConfig.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelConfig.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelConfig.edmx</DependentUpon>
+      <LastGenOutput>ModelConfig.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelConfig.edmx.diagram">
+      <DependentUpon>ModelConfig.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelConfig.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelConfig.edmx</DependentUpon>
+      <LastGenOutput>ModelConfig.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Sistema01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
@@ -634,7 +669,6 @@
     <Folder Include="Areas\Registro\Models\" />
     <Folder Include="Areas\Registro\Views\Default\" />
     <Folder Include="Areas\Registro\Views\Shared\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -655,6 +689,9 @@
       <Project>{ddb8a388-9770-4c76-8772-43e829d4d4eb}</Project>
       <Name>application.Entity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

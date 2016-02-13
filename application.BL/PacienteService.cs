@@ -22,5 +22,17 @@ namespace application.BL
         {
             return this.PacienteRespositorio.DAC_ListaPaciente();
         }
+
+
+        public IList<EstadosTablas> BL_ListaEstados()
+        {
+            return this.PacienteRespositorio.DAC_ListaEstados();
+        }
+
+
+        public IList<Paciente> BL_DetallePaciente(string Codigo)
+        {
+            return this.PacienteRespositorio.DAC_DetallePaciente(Codigo);
+        }
     }
 }

@@ -51,7 +51,36 @@ namespace application.DAC
                 var parametros = new DynamicParameters();
                 //parametros.Add("@busqueda", busqueda);
                 respuesta = Dapper.SqlMapper.Query<Entity.Paciente>(con, "SP_LISTA_PACIENTE", null, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
 
+
+        public IList<Entity.EstadosTablas> DAC_ListaEstados()
+        {
+
+            IList<Entity.EstadosTablas> respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                respuesta = Dapper.SqlMapper.Query<Entity.EstadosTablas>(con, "SP_ListaTipoEstado", null, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
+
+
+        public IList<Entity.Paciente> DAC_DetallePaciente(string Codigo)
+        {
+            IList<Entity.Paciente> respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                var parametros = new DynamicParameters();
+                parametros.Add("@usu_numdoc", Codigo);
+
+                respuesta = Dapper.SqlMapper.Query<Entity.Paciente>(con, "SP_DETALLEPACIENTE", parametros, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();
             }
             return respuesta.ToList();

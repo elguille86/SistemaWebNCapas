@@ -17,7 +17,7 @@
                 var source = {
                     datatype: "json",
                     datafields: [
-                        { name: 'usu_nombres', type: 'string' }, { name: 'usu_numdoc', type: 'string' }, { name: 'usu_apepaterno', type: 'string' }, { name: 'usu_apematerno', type: 'string' }, { name: 'CodPac', type: 'string' },
+                        { name: 'usu_nombres', type: 'string' }, { name: 'usu_numdoc', type: 'string' }, { name: 'usu_apepaterno', type: 'string' }, { name: 'usu_apematerno', type: 'string' }, { name: 'CodPac', type: 'string' }, { name: 'usu_estado', type: 'string' },
 
 
                     ],
@@ -32,7 +32,7 @@
                 $("#jqxgrid").jqxGrid({
                     theme: theme, width:900, columnsresize: true, pageable: true, pagesize: 800, height: 400, showfilterrow: true, filterable: true, source: dataAdapter, pagerrenderer: pagerrenderer, selectionmode: 'multiplecellsadvanced', columnsresize: true,
                     columns: [
-                      { text: 'DNI', datafield: 'usu_numdoc', width: 90 }, { text: 'Nombre', datafield: 'usu_nombres', width: 170 }, { text: 'A.Paterno', datafield: 'usu_apepaterno', width: 170 }, { text: 'A.Materno', datafield: 'usu_apematerno', width: 170 },
+                      { text: 'DNI', datafield: 'usu_numdoc', width: 90 }, { text: 'Nombre', datafield: 'usu_nombres', width: 170 }, { text: 'A.Paterno', datafield: 'usu_apepaterno', width: 170 }, { text: 'A.Materno', datafield: 'usu_apematerno', width: 170 }, { text: 'Estado', datafield: 'usu_estado', width: 170 },
                         { text: 'Editar', columntype: 'button', width: 70, cellsrenderer: function () { return "Editar"; }, buttonclick: EventoEdita },
                     ]
                 });

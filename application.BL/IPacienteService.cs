@@ -11,5 +11,7 @@ namespace application.BL
     {
         IList<RespuestaGlobal> BL_InsertaPaciente(Paciente Model);
         IList<Paciente> BL_ListaPaciente();
+        IList<EstadosTablas> BL_ListaEstados();
+        IList<Paciente> BL_DetallePaciente(string Codigo);
     }
 }

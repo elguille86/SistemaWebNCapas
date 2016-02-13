@@ -11,5 +11,7 @@ namespace application.DAC
     {
         IList<RespuestaGlobal> DAC_InsertaPaciente(Paciente Model);
         IList<Paciente> DAC_ListaPaciente( );
+        IList<EstadosTablas> DAC_ListaEstados();
+        IList<Paciente> DAC_DetallePaciente(string Codigo);
     }
 }

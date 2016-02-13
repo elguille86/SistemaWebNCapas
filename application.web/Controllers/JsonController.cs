@@ -28,7 +28,7 @@ namespace application.web.Controllers
 
             for (int i = 0; i < Lista.Count; i++)
             {
-                Lista[i].CodPac = this.ConG.Encrypt(Lista[i].CodPac);
+                Lista[i].CodPac = this.ConG.Encriptar_V1(Lista[i].CodPac);
             }
  
             /*

@@ -92,8 +92,8 @@ InsertaDato:
 		exec S_Genera_Codigo2  'TB_USUARIO_SISTEMA',@NroCorrelativo output
 		set @codigo =   right(year(getdate()),2)  +  right('00000000000000000'+ LTRIM(RTRIM(@NroCorrelativo))  ,10)
 
-		INSERT INTO [dbo].[TB_USUARIO_SALUD] ([usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg])
-		values(@codigo ,  @usu_numdoc  ,UPPER(@usu_apepaterno),UPPER(@usu_apematerno) , UPPER(@usu_nombres),@usu_fechanac,1,getdate() )	
+		INSERT INTO [dbo].[TB_USUARIO_SALUD] ([usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg],usu_estado)
+		values(@codigo ,  @usu_numdoc  ,UPPER(@usu_apepaterno),UPPER(@usu_apematerno) , UPPER(@usu_nombres),@usu_fechanac,1,getdate(),'1' )	
 		 	  
 		select 'Paciente Registrado con Exito ' as RespText,'true' as RespEstado ,'exito' as RespClass
 		--DBCC CHECKIDENT ('dbo.tb_documentos', RESEED, 0); 
@@ -115,7 +115,13 @@ Create Procedure [dbo].[SP_LISTA_PACIENTE]
 @busqueda varchar(250) =''
 as
 select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg]
-, [usu_docid_codigo] as CodPac 
+, [usu_docid_codigo] as CodPac ,
+CASE usu_estado 
+     WHEN '1' THEN 'HABILITADO'
+      ELSE 'DESHABILITADO'
+END 
+as usu_estado
+
  from TB_USUARIO_SALUD
 where [usu_nombres] like '%'+@busqueda+'%'
 ORDER BY feg_reg DESC
@@ -144,13 +150,24 @@ AS
 
 
 GO
-
+ 
 drop Procedure [dbo].[SP_DETALLEPACIENTE]
+[SP_DETALLEPACIENTE] '160000000001'
 Create Procedure [dbo].[SP_DETALLEPACIENTE]
 @usu_numdoc varchar(250) =''
 as
-select [usu_docid_codigo] ,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg] from TB_USUARIO_SALUD
-where usu_numdoc  = @usu_numdoc 
+select [usu_docid_codigo] as CodPac,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg],usu_estado from TB_USUARIO_SALUD
+where usu_docid_codigo  = @usu_numdoc 
 ORDER BY feg_reg DESC
 GO
  
+ Create View Tv_TipoEstado
+ as
+     select '1' as mvalor,  'HABILITADO' as mtexto
+     union all
+     select '0' as mvalor,  'DESHABILITADO' as mtexto
+go      
+Create proc SP_ListaTipoEstado
+as      
+select * from Tv_TipoEstado      
+GO

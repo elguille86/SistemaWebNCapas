@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using application.Entity;
-
+using application.web.Models;
 namespace application.web.Areas.Registro.Controllers
 {
    [Authorize]
@@ -13,6 +13,7 @@ namespace application.web.Areas.Registro.Controllers
     {
         private application.BL.IPacienteService PacienteService = new application.BL.PacienteService();
         private application.BL.Configuracion.FuncionGeneral ConG = new application.BL.Configuracion.FuncionGeneral();
+       // private BDGRPNETEntities db = new BDGRPNETEntities();
         // GET: Registro/Default
 
         public ActionResult lista() {
@@ -66,10 +67,37 @@ namespace application.web.Areas.Registro.Controllers
 
 
         public ActionResult editpac(string id) {
+            
             ViewBag.TitlePag = "Editar Paciente";
-            id  = ConG.Decrypt(id);
+            id = ConG.DesEncriptar_V1(id);
             ViewBag.Codigo = id;
-            return View();
+             
+            Paciente Model2 = new Paciente();
+
+            var Model = this.PacienteService.BL_DetallePaciente(id);
+            Model2.CodPac = Model[0].CodPac;
+            Model2.usu_apematerno = Model[0].usu_apematerno;
+            Model2.usu_apepaterno = Model[0].usu_apepaterno;
+            //Usando View Model
+            //ViewBag.usu_estado = new SelectList(db.Tv_TipoEstado, "mvalor", "mtexto");
+            ViewBag.usu_estado = new SelectList(PacienteService.BL_ListaEstados(), "mvalor", "mtexto");
+            //ViewBag.usu_estado = new SelectList(TablaEstados, "valor", "Texto");
+
+            return View(Model[0]);
         }
+
+
+        //public IEnumerable<EstadosTablas> TablaEstados()
+        //{
+
+        //    IEnumerable<EstadosTablas> Estados = new IEnumerable<EstadosTablas>();
+        //    Estados.Add(new EstadosTablas { valor = "1", Texto = "HABILITADO" });
+        //    Estados.Add(new EstadosTablas { valor = "0", Texto = "DESHABILITADO" });
+
+        //    return Estados;
+        //}
+
+
+
     }
 }

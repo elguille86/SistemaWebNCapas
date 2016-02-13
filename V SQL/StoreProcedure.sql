@@ -206,3 +206,29 @@ select * from Tv_TipoEstado
 GO
 
 
+
+
+ -- [SP_CONSULTAJSON_PACIENTE] 'gui'
+alter Procedure [dbo].[SP_CONSULTAJSON_PACIENTE]
+@busqueda varchar(250) =''
+as
+select top 15  [usu_apepaterno] +' '+[usu_apematerno] +' , '+[usu_nombres] AS nomcompleto
+, [usu_docid_codigo] as Codigo  
+ 
+
+ from TB_USUARIO_SALUD
+where [usu_nombres] like '%'+@busqueda+'%' AND usu_estado = '1' 
+ORDER BY feg_reg DESC
+GO
+
+Create Procedure [dbo].[SP_CONSULTAJSON_Producto]
+@busqueda varchar(250) =''
+as
+select top 15  prod_descri AS nomcompleto
+, cod_prod as Codigo  
+ 
+
+ from dbo.TB_PRODUCTO_SERVICIO
+where prod_descri like '%'+@busqueda+'%'  
+ 
+GO

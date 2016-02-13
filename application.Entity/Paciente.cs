@@ -47,4 +47,13 @@ namespace application.Entity
         public string RespEstado { get; set; }
         public string RespClass { get; set; }
     }
+
+    public class JsonBasico
+    {
+        public string nomcompleto { get; set; }
+        public string Codigo { get; set; }
+ 
+    }
+
+ 
 }

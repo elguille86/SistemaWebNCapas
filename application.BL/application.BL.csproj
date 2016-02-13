@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="Configuracion\FuncionGeneral.cs" />
     <Compile Include="Configuracion\IFuncionGeneral.cs" />
+    <Compile Include="IProductosService.cs" />
     <Compile Include="IPacienteService.cs" />
     <Compile Include="IUsuariosService.cs" />
+    <Compile Include="ProductosService.cs" />
     <Compile Include="PacienteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuariosService.cs" />

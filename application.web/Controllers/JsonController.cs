@@ -13,6 +13,7 @@ namespace application.web.Controllers
     public class JsonController : Controller
     {
         private application.BL.IPacienteService PacienteService = new application.BL.PacienteService();
+        private application.BL.IProductosService ProductoService = new application.BL.ProductosService();
         private application.BL.Configuracion.FuncionGeneral ConG = new application.BL.Configuracion.FuncionGeneral();
         //public class Estudiante
         //{
@@ -40,6 +41,17 @@ namespace application.web.Controllers
             //return Json(new { current = 1, rowCount = 10, total = Lista.Count(), rows = Lista, }, JsonRequestBehavior.DenyGet); 
             return Json(new { result = Lista }, JsonRequestBehavior.AllowGet); 
            // return Json(new { result = estudiantes }, JsonRequestBehavior.DenyGet); 
+        }
+
+        public JsonResult Jsoncliente(string term)
+        {
+            IList<Entity.JsonBasico> Lista = PacienteService.BL_JsonPaciente(term);           
+            return Json(  Lista  , JsonRequestBehavior.AllowGet); 
+        }
+        public JsonResult JsonProducto(string term)
+        {
+            IList<Entity.JsonBasico> Lista = ProductoService.BL_JsonProductos(term);
+            return Json(Lista, JsonRequestBehavior.AllowGet);
         }
     }
      

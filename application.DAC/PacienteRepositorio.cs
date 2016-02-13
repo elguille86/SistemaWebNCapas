@@ -107,5 +107,20 @@ namespace application.DAC
             }
             return respuesta.ToList();
         }
+
+
+        public IList<Entity.JsonBasico> DAC_JsonPaciente(string Codigo)
+        {
+            IList<Entity.JsonBasico> respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                var parametros = new DynamicParameters();
+                parametros.Add("@busqueda", Codigo);
+                respuesta = Dapper.SqlMapper.Query<Entity.JsonBasico>(con, "SP_CONSULTAJSON_PACIENTE", parametros, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
     }
 }

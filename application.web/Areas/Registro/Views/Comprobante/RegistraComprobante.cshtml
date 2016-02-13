@@ -20,8 +20,8 @@
             <tr>
                 <td>Nombre del Cliente</td>
                 <td colspan="3">
-                    <input type="text" id="cliente" />
-                    <input type="text" id="usu_docid_codigo" />
+                    <input type="text" id="cliente" name="cliente" />
+                    <input type="hidden" id="usu_docid_codigo" name=" usu_docid_codigo" /> 
                 </td>
             </tr>
         </table>
@@ -38,6 +38,7 @@
             <tr>
                 <td>
                     <input type="text" id="itemName" />
+                    <input type="text" id="itemNamecodigo" />
                     <span class="error">Item name required</span>
                 </td>
                 <td>
@@ -69,8 +70,51 @@
  
  
         <script type="text/javascript">
-            $(document).ready(function () {
+    $(document).ready(function () {
+
  
+        $('#cliente').css('width', '340px');
+        $("#cliente").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("Jsoncliente", "Json", new { area = "" }, null)', dataType: "json", data: { term: request.term,   },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.nomcompleto, Codigo: item.Codigo, };
+                        }));
+                    }
+                });
+            }, minLength: 2,
+            focus: function (event, ui) { event.preventDefault(); $(this).val(ui.item.label); },
+            select: function (event, ui) {
+                event.preventDefault(); $(this).val(ui.item.label);
+                $("#usu_docid_codigo").val(ui.item.Codigo);
+             
+            }
+        });
+
+
+        $("#itemName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("JsonProducto", "Json", new { area = "" }, null)', dataType: "json", data: { term: request.term, },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.nomcompleto, Codigo: item.Codigo, };
+                        }));
+                    }
+                });
+            }, minLength: 2,
+            focus: function (event, ui) { event.preventDefault(); $(this).val(ui.item.label); },
+            select: function (event, ui) {
+                event.preventDefault(); $(this).val(ui.item.label);
+                $("#itemNamecodigo").val(ui.item.Codigo);
+
+            }
+        });
+        
+
+
                 $("#cabe_fecha").datepicker({ autoSize: true, dateFormat: "dd/mm/yy", maxDate: '+0D', changeMonth: true, changeYear: true, yearRange: '-100:+0' });
                 var orderItems = [];
                 // save button click function
@@ -81,7 +125,7 @@
                         $('#orderItems').html('<span style="color:red;">Debe ingresar Productos</span>');
                         isAllValid = false;
                     }
- 
+
 
                     if ($('#cabe_fecha').val().trim() == '') {
                         $('#cabe_fecha').siblings('span.error').css('visibility', 'visible');
@@ -98,7 +142,7 @@
                     }
 
 
-                    
+
                     // Save if valid
                     if (isAllValid) {
                         var data = {
@@ -134,12 +178,12 @@
                         });
                     }
                 });
- 
+
 
                 var theme = 'metrodark';//'classic';
                 // prepare the data
                 var datagrid = {};
- 
+
                 var generaterow = function (dnom, dcant, dpre , dcodp ) {
                     var row = {};
                     row["prod_descri"] = dnom; row["cant_prod"] = dcant;
@@ -147,7 +191,7 @@
                     return row;
                 }
                 var deletedatos = function (id ) { delete orderItems[id]; }
- 
+
                 var source =
                 {
                     localdata: datagrid,
@@ -159,7 +203,7 @@
                         { name: 'prod_precio', type: 'string' },
                         { name: 'cod_prod', type: 'string' },
                         { name: 'SubTotal', type: 'number' },
-                        
+
                     ],
                     addrow: function (rowid, rowdata, position, commit) { commit(true); },
                     deleterow: function (rowid, commit) {  commit(true);  },
@@ -186,7 +230,7 @@
 
 
                             // check validation of order item
-                            var isValidItem = true; 
+                            var isValidItem = true;
                     if ($('#itemName').val().trim() == '') {
                         isValidItem = false;
                         $('#itemName').siblings('span.error').css('visibility', 'visible');
@@ -210,13 +254,13 @@
                     else {
                         $('#rate').siblings('span.error').css('visibility', 'hidden');
                     }
-                  
+
                             // add item to list if valid
                             if (isValidItem) {
                                 var dnom = $('#itemName').val().trim();
                                 var dcant = parseInt($('#quantity').val().trim());
                                 var dpre = parseFloat($('#rate').val().trim());
-                                var dcodp = 'ddd';
+                                var dcodp =   $('#itemNamecodigo').val().trim();
                                 var datarow = generaterow(dnom, dcant, dpre, dcodp);
                                 var commit = $("#jqxgrid").jqxGrid('addrow', null, datarow);
 
@@ -233,7 +277,7 @@
 
 
                         });
- 
+
                         // delete row.
                         $("#deleterowbutton").on('click', function () {
                             var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
@@ -246,7 +290,7 @@
                         });
                     },
 
- 
+
                     columns: [
                       { text: 'Producto', datafield: 'prod_descri', width: 240 },
                       { text: 'Cantidad', datafield: 'cant_prod', width: 90 },

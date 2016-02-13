@@ -14,5 +14,8 @@ namespace application.BL
         IList<Paciente> BL_ListaPaciente();
         IList<EstadosTablas> BL_ListaEstados();
         IList<Paciente> BL_DetallePaciente(string Codigo);
+        IList<JsonBasico> BL_JsonPaciente(string Codigo);
+        
+        
     }
 }

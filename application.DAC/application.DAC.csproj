@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClsConexion.cs" />
+    <Compile Include="IProductosRepositorio.cs" />
     <Compile Include="IPacienteRepositorio.cs" />
     <Compile Include="IUsuariosRepositorio.cs" />
+    <Compile Include="ProductosRepositorio.cs" />
     <Compile Include="PacienteRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuariosRepositorio.cs" />

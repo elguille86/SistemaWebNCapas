@@ -15,5 +15,7 @@ namespace application.DAC
         IList<Paciente> DAC_ListaPaciente( );
         IList<EstadosTablas> DAC_ListaEstados();
         IList<Paciente> DAC_DetallePaciente(string Codigo);
+        IList<JsonBasico> DAC_JsonPaciente(string Codigo);
+        
     }
 }

@@ -40,5 +40,11 @@ namespace application.BL
         {
             return this.PacienteRespositorio.DAC_ActualizarPaciente(Model);
         }
+
+
+        public IList<JsonBasico> BL_JsonPaciente(string Codigo)
+        {
+            return this.PacienteRespositorio.DAC_JsonPaciente(Codigo);
+        }
     }
 }

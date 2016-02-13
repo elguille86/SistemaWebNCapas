@@ -12,8 +12,8 @@ namespace application.BL
     {
 
         private DAC.IProductosRepositorio ProductoRespositorio = new DAC.ProductosRepositorio();
-        
-        public IList<JsonBasico> BL_JsonProductos(string Codigo)
+
+        public IList<JsonBasico2> BL_JsonProductos(string Codigo)
         {
             return this.ProductoRespositorio.DAC_JsonProducto(Codigo);
         } 

@@ -50,7 +50,7 @@ namespace application.web.Controllers
         }
         public JsonResult JsonProducto(string term)
         {
-            IList<Entity.JsonBasico> Lista = ProductoService.BL_JsonProductos(term);
+            IList<Entity.JsonBasico2> Lista = ProductoService.BL_JsonProductos(term);
             return Json(Lista, JsonRequestBehavior.AllowGet);
         }
     }

@@ -23,16 +23,16 @@ namespace application.DAC
                 //ConfigurationManager.ConnectionStrings["BDSistema"].ConnectionString;
         }
 
-  
-        public IList<Entity.JsonBasico> DAC_JsonProducto(string Codigo)
+
+        public IList<Entity.JsonBasico2> DAC_JsonProducto(string Codigo)
         {
-            IList<Entity.JsonBasico> respuesta = null;
+            IList<Entity.JsonBasico2> respuesta = null;
             using (var con = new SqlConnection(this.ConnectionString))
             {
                 con.Open();
                 var parametros = new DynamicParameters();
                 parametros.Add("@busqueda", Codigo);
-                respuesta = Dapper.SqlMapper.Query<Entity.JsonBasico>(con, "SP_CONSULTAJSON_Producto", parametros, commandType: CommandType.StoredProcedure).ToList();
+                respuesta = Dapper.SqlMapper.Query<Entity.JsonBasico2>(con, "SP_CONSULTAJSON_Producto", parametros, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();
             }
             return respuesta.ToList();

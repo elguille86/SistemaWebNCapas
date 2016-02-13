@@ -10,7 +10,7 @@ namespace application.BL
     public interface IProductosService
     {
 
-        IList<JsonBasico> BL_JsonProductos(string Codigo);
+        IList<JsonBasico2> BL_JsonProductos(string Codigo);
         
         
     }

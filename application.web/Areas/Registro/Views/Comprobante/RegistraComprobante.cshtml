@@ -38,16 +38,16 @@
             <tr>
                 <td>
                     <input type="text" id="itemName" />
-                    <input type="text" id="itemNamecodigo" />
-                    <span class="error">Item name required</span>
+                    <input type="hidden" id="itemNamecodigo" />
+                    <span class="error">Se Requere Producto</span>
                 </td>
                 <td>
                     <input type="text" id="quantity" />
-                    <span class="error">Item quantity required</span>
+                    <span class="error">Se Requiere Cantidad</span>
                 </td>
                 <td>
-                    <input type="text" id="rate" />
-                    <span class="error">Item rate required</span>
+                    <input type="text" id="rate" readonly />
+                    <span class="error">Se Requiere Precio</span>
                 </td>
        
             </tr>
@@ -73,7 +73,8 @@
     $(document).ready(function () {
 
  
-        $('#cliente').css('width', '340px');
+        $('#cliente').css('width', '340px'); $('#itemName').css('width', '340px');
+        
         $("#cliente").autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -100,7 +101,7 @@
                     url: '@Url.Action("JsonProducto", "Json", new { area = "" }, null)', dataType: "json", data: { term: request.term, },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.nomcompleto, Codigo: item.Codigo, };
+                            return { label: item.nomcompleto, Codigo: item.Codigo, precio: item.precio, };
                         }));
                     }
                 });
@@ -108,8 +109,7 @@
             focus: function (event, ui) { event.preventDefault(); $(this).val(ui.item.label); },
             select: function (event, ui) {
                 event.preventDefault(); $(this).val(ui.item.label);
-                $("#itemNamecodigo").val(ui.item.Codigo);
-
+                $("#itemNamecodigo").val(ui.item.Codigo); $("#rate").val(ui.item.precio); $("#quantity").focus();
             }
         });
         
@@ -231,29 +231,29 @@
 
                             // check validation of order item
                             var isValidItem = true;
-                    if ($('#itemName').val().trim() == '') {
-                        isValidItem = false;
-                        $('#itemName').siblings('span.error').css('visibility', 'visible');
-                    }
-                    else {
-                        $('#itemName').siblings('span.error').css('visibility', 'hidden');
-                    }
+                                if ($('#itemName').val().trim() == '') {
+                                    isValidItem = false;
+                                    $('#itemName').siblings('span.error').css('visibility', 'visible');
+                                }
+                                else {
+                                    $('#itemName').siblings('span.error').css('visibility', 'hidden');
+                                }
 
-                    if (!($('#quantity').val().trim() != '' && !isNaN($('#quantity').val().trim()))) {
-                        isValidItem = false;
-                        $('#quantity').siblings('span.error').css('visibility', 'visible');
-                    }
-                    else {
-                        $('#quantity').siblings('span.error').css('visibility', 'hidden');
-                    }
+                                if (!($('#quantity').val().trim() != '' && !isNaN($('#quantity').val().trim()))) {
+                                    isValidItem = false;
+                                    $('#quantity').siblings('span.error').css('visibility', 'visible');
+                                }
+                                else {
+                                    $('#quantity').siblings('span.error').css('visibility', 'hidden');
+                                }
 
-                    if (!($('#rate').val().trim() != '' && !isNaN($('#rate').val().trim()))) {
-                        isValidItem = false;
-                        $('#rate').siblings('span.error').css('visibility', 'visible');
-                    }
-                    else {
-                        $('#rate').siblings('span.error').css('visibility', 'hidden');
-                    }
+                                if (!($('#rate').val().trim() != '' && !isNaN($('#rate').val().trim()))) {
+                                    isValidItem = false;
+                                    $('#rate').siblings('span.error').css('visibility', 'visible');
+                                }
+                                else {
+                                    $('#rate').siblings('span.error').css('visibility', 'hidden');
+                                }
 
                             // add item to list if valid
                             if (isValidItem) {
@@ -271,6 +271,11 @@
                                     SubTotal: dcant * dpre,
                                     Cod_prod: dcodp
                                 });
+
+                                $('#itemName').val('');
+                                $('#quantity').val('');
+                                $('#rate').val('');
+                                $('#itemNamecodigo').val('');
                             }
 
 
@@ -294,7 +299,7 @@
                     columns: [
                       { text: 'Producto', datafield: 'prod_descri', width: 240 },
                       { text: 'Cantidad', datafield: 'cant_prod', width: 90 },
-                      { text: 'CodigoPro', datafield: 'cod_prod', width: 80, cellsalign: 'right' },
+                      { text: 'CodigoPro', datafield: 'cod_prod', width: 80, cellsalign: 'right', hidden: 'hides' },
                       { text: 'Precio', datafield: 'prod_precio', width: 90, cellsalign: 'right'  },
                       { text: 'SubTotal', datafield: 'SubTotal', width: 120, cellsalign: 'right'  }
                     ]

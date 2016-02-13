@@ -221,14 +221,18 @@ where [usu_nombres] like '%'+@busqueda+'%' AND usu_estado = '1'
 ORDER BY feg_reg DESC
 GO
 
-Create Procedure [dbo].[SP_CONSULTAJSON_Producto]
+create Procedure [dbo].[SP_CONSULTAJSON_Producto]
 @busqueda varchar(250) =''
 as
-select top 15  prod_descri AS nomcompleto
-, cod_prod as Codigo  
+select top 15  a.prod_descri AS nomcompleto
+, a.cod_prod as Codigo  , prod_precio  as  precio
  
 
- from dbo.TB_PRODUCTO_SERVICIO
-where prod_descri like '%'+@busqueda+'%'  
+ from dbo.TB_PRODUCTO_SERVICIO  a , dbo.TB_STOCK b
+ where a.cod_prod = b.cod_prod and  cod_estab ='E16000000001'
+and  a.prod_descri like '%'+@busqueda+'%'  
  
 GO
+
+
+ 

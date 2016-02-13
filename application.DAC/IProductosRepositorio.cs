@@ -9,8 +9,8 @@ namespace application.DAC
 {
     public interface IProductosRepositorio  
     {
- 
-        IList<JsonBasico> DAC_JsonProducto(string Codigo);
+
+        IList<JsonBasico2> DAC_JsonProducto(string Codigo);
         
     }
 }

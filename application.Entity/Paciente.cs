@@ -54,6 +54,12 @@ namespace application.Entity
         public string Codigo { get; set; }
  
     }
-
+    public class JsonBasico2
+    {
+        public string nomcompleto { get; set; }
+        public string Codigo { get; set; }
+        public decimal precio { get; set; }
+ 
+    }
  
 }

@@ -78,7 +78,7 @@ namespace application.web.Areas.Registro.Controllers
           
             //Usando View Model
             //ViewBag.usu_estado = new SelectList(db.Tv_TipoEstado, "mvalor", "mtexto");
-            ViewBag.usu_estado = new SelectList(PacienteService.BL_ListaEstados(), "mvalor", "mtexto");          
+            ViewBag.usu_estado = new SelectList(PacienteService.BL_ListaEstados(), "mvalor", "mtexto", Model[0].usu_estado);          
             if (Model.Count() > 0)
             {
                 return View(Model[0]);

@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Registro\Controllers\ComprobanteController.cs" />
     <Compile Include="Areas\Registro\Controllers\PacienteController.cs" />
+    <Compile Include="Areas\Registro\Models\CabComprobante.cs" />
     <Compile Include="Areas\Registro\Models\ComprobanteModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

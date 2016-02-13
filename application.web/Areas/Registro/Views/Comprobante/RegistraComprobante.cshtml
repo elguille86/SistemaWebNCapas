@@ -17,7 +17,7 @@
                     <span class="error">Valid order date requered (ex. MM-DD-YYYY)</span>
                 </td>
             </tr>
-            <tr>
+            <tr> 
                 <td>Nombre del Cliente</td>
                 <td colspan="3">
                     <input type="text" id="cliente" name="cliente" />
@@ -52,9 +52,7 @@
        
             </tr>
         </table>
-        <div id="orderItems" class="tablacontainer">
-
-        </div>
+        <input type="text" id="Mont_Total" name="Mont_Total" value="" readonly />
         <div style="padding:10px 0px; text-align:left">
             <input id="submit" type="button" value="Save" style="padding:10px 20px" />
         </div>
@@ -62,8 +60,7 @@
 </div>
 
 
-
-<div id="jqxgrid"></div>
+<center> <div id="jqxgrid"></div> </center>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     @section Scripts{
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -72,13 +69,13 @@
         <script type="text/javascript">
     $(document).ready(function () {
 
- 
+
         $('#cliente').css('width', '340px'); $('#itemName').css('width', '340px');
-        
+
         $("#cliente").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: '@Url.Action("Jsoncliente", "Json", new { area = "" }, null)', dataType: "json", data: { term: request.term,   },
+                    url: '@Url.Action("Jsoncliente", "Json", new { area = "" }, null)', dataType: "json", data: { term: request.term, },
                     success: function (data) {
                         response($.map(data, function (item) {
                             return { label: item.nomcompleto, Codigo: item.Codigo, };
@@ -90,7 +87,7 @@
             select: function (event, ui) {
                 event.preventDefault(); $(this).val(ui.item.label);
                 $("#usu_docid_codigo").val(ui.item.Codigo);
-             
+
             }
         });
 
@@ -112,7 +109,7 @@
                 $("#itemNamecodigo").val(ui.item.Codigo); $("#rate").val(ui.item.precio); $("#quantity").focus();
             }
         });
-        
+
 
 
                 $("#cabe_fecha").datepicker({ autoSize: true, dateFormat: "dd/mm/yy", maxDate: '+0D', changeMonth: true, changeYear: true, yearRange: '-100:+0' });
@@ -146,16 +143,15 @@
                     // Save if valid
                     if (isAllValid) {
                         var data = {
-                            OrderNo: $('#orderNo').val().trim(),
-                            OrderDate: $('#orderDate').val().trim(),
-                            //Sorry forgot to add Description Field
-                            Description: $('#description').val().trim(),
-                            OrderDetails: orderItems
+                            cabe_fecha: $('#cabe_fecha').val().trim(),
+                            usu_docid_codigo: $('#usu_docid_codigo').val().trim(),
+                            Mont_Total :  $('#Mont_Total').val().trim(),
+                            TB_COMPROBANTE_DET: orderItems
                         }
                         $(this).val('Please wait......')
                         $.ajax({
                             //                        url: 'URL FOR POST ACTION HERE',
-                            url: '/Home/SaveOrder',
+                            url: '@Url.Action("SaveOver", "Comprobante", new { area = "Registro" }, null)',
                             type: "POST",
                             data: JSON.stringify(data),
                             datatype: "JSON",
@@ -183,14 +179,14 @@
                 var theme = 'metrodark';//'classic';
                 // prepare the data
                 var datagrid = {};
-
+                var total = 0;
                 var generaterow = function (dnom, dcant, dpre , dcodp ) {
                     var row = {};
                     row["prod_descri"] = dnom; row["cant_prod"] = dcant;
                     row["prod_precio"] = dpre; row["cod_prod"] = dcodp; row["SubTotal"] =  (dpre  *  dcant ) ;
                     return row;
                 }
-                var deletedatos = function (id ) { delete orderItems[id]; }
+                var deletedatos = function (id) { total = total - orderItems[id].SubTotal; delete orderItems[id]; $("#Mont_Total").val(total); }
 
                 var source =
                 {
@@ -212,7 +208,7 @@
                 // initialize jqxGrid
                 $("#jqxgrid").jqxGrid(
                 {
-                    theme: theme, width: 900,
+                    theme: theme, width: 560,
                     height: 350,
                     source: dataAdapter,
                     showtoolbar: true,
@@ -271,7 +267,8 @@
                                     SubTotal: dcant * dpre,
                                     Cod_prod: dcodp
                                 });
-
+                                total = parseFloat(total) + (dcant * dpre);
+                                $("#Mont_Total").val(total);
                                 $('#itemName').val('');
                                 $('#quantity').val('');
                                 $('#rate').val('');
@@ -297,11 +294,11 @@
 
 
                     columns: [
-                      { text: 'Producto', datafield: 'prod_descri', width: 240 },
-                      { text: 'Cantidad', datafield: 'cant_prod', width: 90 },
-                      { text: 'CodigoPro', datafield: 'cod_prod', width: 80, cellsalign: 'right', hidden: 'hides' },
-                      { text: 'Precio', datafield: 'prod_precio', width: 90, cellsalign: 'right'  },
-                      { text: 'SubTotal', datafield: 'SubTotal', width: 120, cellsalign: 'right'  }
+                      { text: 'Producto', datafield: 'prod_descri', width: 300 },
+                      { text: 'Cantidad', datafield: 'cant_prod', width: 90, cellsalign: 'center', },
+                      { text: 'CodigoPro', datafield: 'cod_prod', width: 70, cellsalign: 'center', hidden: 'hides' },
+                      { text: 'Precio', datafield: 'prod_precio', width: 60, cellsalign: 'center' },
+                      { text: 'SubTotal', datafield: 'SubTotal', width: 80, cellsalign: 'center' }
                     ]
                 });
             });

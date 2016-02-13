@@ -1,0 +1,35 @@
+﻿/*
+Desarrollador por : Ing.Guillermo J Rodriguez Pineda
+*/
+@charset "utf-8";
+/*****************************************************************************/
+/*
+.submenu ul {margin:0;padding:0;}
+.submenu ul li{list-style-type:none; margin:5px 0; }
+.submenu a:hover{color:#3f95e6;font-weight: bold;} */
+ /************************************* Menu ************************************/
+nav {border: 1px solid #aaaaaa;margin: 0;padding: 0;/*background:#FFFFFF;*/padding-bottom:35px; }
+nav ul, nav ul ul{ margin:0; padding:0; list-style-type:none; list-style-position:outside; position:relative; line-height:1.5em; /* background:#FFF; */}
+nav ul a{ display:block; /*color:#000000;*/ text-decoration:none; margin: 8px , 30px; border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+nav ul a:hover{background:#333;color:#eaeaea;}
+nav ul li a{padding: 0 20px; margin: 0.5em 0}
+nav ul li{ float:left; position:relative; min-width: 100px; /*font-size:0.745em*/ ; text-align: center; }
+nav ul ul {position:absolute;display:none; background:#101010;}
+nav ul li ul a{ width:12em; margin: 0.2em 0.5em; border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;   
+  height:auto; float:left; border:none; text-align: left; }
+nav ul ul ul{ top:auto; } 
+nav ul li ul ul { left:12em; margin:0 0 0 10px; }
+nav ul li ul li {border: none;}
+nav ul li:hover ul ul, nav ul li:hover ul ul ul, nav ul li:hover ul ul ul ul{display:none;}
+nav ul li:hover ul, nav ul li li:hover ul, nav ul li li li:hover ul, nav ul li li li li:hover ul{
+  display:block; z-index: 200000; /*font-size:0.95em;  */ border: 1px solid #aaaaaa; border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px; }

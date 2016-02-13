@@ -16,6 +16,12 @@ namespace application.BL
         public IList<JsonBasico2> BL_JsonProductos(string Codigo)
         {
             return this.ProductoRespositorio.DAC_JsonProducto(Codigo);
-        } 
+        }
+
+
+        public IList<GridCabComp> BL_ListaCabCompro()
+        {
+            return this.ProductoRespositorio.DAC_ListaCabCompro();
+        }
     }
 }

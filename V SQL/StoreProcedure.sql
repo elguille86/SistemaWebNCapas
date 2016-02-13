@@ -235,4 +235,18 @@ and  a.prod_descri like '%'+@busqueda+'%'
 GO
 
 
+ Create Proc SP_Lista_CabProducto
+ as
+
+ /****** Script para el comando SelectTopNRows de SSMS  ******/
+SELECT  
+      CONVERT(VARCHAR(10),[cabe_fecha],103)  as Fecha     
+      ,[cod_comp] as CodComp
+      , [usu_apepaterno] +' '+[usu_apematerno] +' , '+[usu_nombres]as cliente      
+      ,[Mont_Total] as Monto
+  FROM [BDGRPNET].[dbo].[TB_COMPROBANTE_CAB] a , [dbo].[TB_USUARIO_SALUD] b
+  where a.usu_docid_codigo = b.usu_docid_codigo 
+  order by cabe_hora desc
+
+  Go
  

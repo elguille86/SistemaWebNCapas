@@ -53,6 +53,12 @@ namespace application.web.Controllers
             IList<Entity.JsonBasico2> Lista = ProductoService.BL_JsonProductos(term);
             return Json(Lista, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult JsonCabComp(string term)
+        {
+            IList<Entity.GridCabComp> Lista = ProductoService.BL_ListaCabCompro();
+            return Json(Lista, JsonRequestBehavior.AllowGet);
+        }
     }
      
 }

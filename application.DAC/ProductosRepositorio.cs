@@ -38,6 +38,20 @@ namespace application.DAC
             return respuesta.ToList();
         }
 
- 
+
+
+
+        public IList<Entity.GridCabComp> DAC_ListaCabCompro()
+        {
+            IList<Entity.GridCabComp> respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+
+                respuesta = Dapper.SqlMapper.Query<Entity.GridCabComp>(con, "SP_Lista_CabProducto", null, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
     }
 }

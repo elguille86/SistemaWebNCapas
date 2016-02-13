@@ -14,7 +14,9 @@ namespace application.web.Areas.Registro.Controllers
         // GET: Registro/Comprobante
         public ActionResult Index()
         {
-            return RedirectToAction("RegistraComprobante", "Comprobante", new { area = "Registro" });
+            ViewBag.TitlePag = "Lista de Comprobante";
+            return View();
+    //            return RedirectToAction("RegistraComprobante", "Comprobante", new { area = "Registro" });
             
         }
         public ActionResult RegistraComprobante()

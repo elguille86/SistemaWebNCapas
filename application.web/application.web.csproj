@@ -675,6 +675,9 @@
       <LastGenOutput>ComprobanteModel.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\Registro\Views\Comprobante\RegistraComprobante.cshtml" />
+    <Content Include="Areas\Registro\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Registro\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Registro\Views\Comprobante\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Sistema01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
@@ -730,7 +733,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Registro\Views\Default\" />
-    <Folder Include="Areas\Registro\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

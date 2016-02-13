@@ -1,0 +1,10 @@
+﻿@if (Request.IsAuthenticated)
+{
+<li>@Html.ActionLink("Hola " + Html.Encode(User.Identity.Name) + " !", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+<li>@Html.ActionLink("Cambiar Clave", "Changepass", "Seguridad", new { area = "" }, null)</li>
+<li>@Html.ActionLink("Salir", "LogOut", "Seguridad", new { area = "" }, null)</li>
+}
+else
+{ 
+    <li>@Html.ActionLink("Ingresar", "login", "Seguridad",    new { area = "" }, null)</li>
+}

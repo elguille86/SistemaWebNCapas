@@ -54,7 +54,7 @@ namespace application.web.Controllers
             return Json(Lista, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult JsonCabComp(string term)
+        public JsonResult JsonCabComp()
         {
             IList<Entity.GridCabComp> Lista = ProductoService.BL_ListaCabCompro();
             return Json(Lista, JsonRequestBehavior.AllowGet);

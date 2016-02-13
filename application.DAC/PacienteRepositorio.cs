@@ -85,5 +85,27 @@ namespace application.DAC
             }
             return respuesta.ToList();
         }
+
+
+        public IList<Entity.RespuestaGlobal> DAC_ActualizarPaciente(Entity.Paciente Model)
+        {
+            IList<Entity.RespuestaGlobal> respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                var parametros = new DynamicParameters();
+
+                parametros.Add("@usu_docid_codigo", Model.CodPac);
+                parametros.Add("@usu_numdoc", Model.usu_numdoc);
+                parametros.Add("@usu_apepaterno", Model.usu_apematerno);
+                parametros.Add("@usu_apematerno", Model.usu_apematerno);
+                parametros.Add("@usu_nombres", Model.usu_nombres);
+                parametros.Add("@usu_fechanac", Model.usu_fechanac);
+                parametros.Add("@usu_estado", Model.usu_estado);
+                respuesta = Dapper.SqlMapper.Query<Entity.RespuestaGlobal>(con, "SP_ACTUALIZAR_PACIENTE", parametros, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
     }
 }

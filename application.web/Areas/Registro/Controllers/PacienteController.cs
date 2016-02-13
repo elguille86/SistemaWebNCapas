@@ -71,32 +71,63 @@ namespace application.web.Areas.Registro.Controllers
             ViewBag.TitlePag = "Editar Paciente";
             id = ConG.DesEncriptar_V1(id);
             ViewBag.Codigo = id;
-             
-            Paciente Model2 = new Paciente();
-
+ 
             var Model = this.PacienteService.BL_DetallePaciente(id);
-            Model2.CodPac = Model[0].CodPac;
-            Model2.usu_apematerno = Model[0].usu_apematerno;
-            Model2.usu_apepaterno = Model[0].usu_apepaterno;
+            
+           // Model[0].usu_fechanac = Model[0].usu_fechanac.ToString("yyyy-MM-dd");;
+          
             //Usando View Model
             //ViewBag.usu_estado = new SelectList(db.Tv_TipoEstado, "mvalor", "mtexto");
-            ViewBag.usu_estado = new SelectList(PacienteService.BL_ListaEstados(), "mvalor", "mtexto");
-            //ViewBag.usu_estado = new SelectList(TablaEstados, "valor", "Texto");
-
-            return View(Model[0]);
+            ViewBag.usu_estado = new SelectList(PacienteService.BL_ListaEstados(), "mvalor", "mtexto");          
+            if (Model.Count() > 0)
+            {
+                return View(Model[0]);
+            }
+            else {
+                return View();
+            }
+            
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult editpac(Paciente modelp)
+        {
 
-        //public IEnumerable<EstadosTablas> TablaEstados()
-        //{
+            ViewBag.TitlePag = "Editar Paciente";
+            if (ModelState.IsValid)
+            {
+                IList<RespuestaGlobal> respuesta = this.PacienteService.BL_ActualizarPaciente(modelp);
 
-        //    IEnumerable<EstadosTablas> Estados = new IEnumerable<EstadosTablas>();
-        //    Estados.Add(new EstadosTablas { valor = "1", Texto = "HABILITADO" });
-        //    Estados.Add(new EstadosTablas { valor = "0", Texto = "DESHABILITADO" });
+                if (respuesta.Count() > 0)
+                {
+                    string texto = respuesta[0].RespText;
+                    string cls = respuesta[0].RespClass;
+                    string respue = ("<div class='" + cls + "'>" + texto + "</div>");
+                    TempData["mensajeserver"] = respue;
+                    if (respuesta[0].RespEstado == "true")
+                    {                    
+                        return RedirectToAction("lista", "Paciente", new { area = "Registro" });
+                    }
+                    else
+                    {
+                        return View(modelp);
+                    }
 
-        //    return Estados;
-        //}
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
 
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+         
+
+        }
 
 
     }

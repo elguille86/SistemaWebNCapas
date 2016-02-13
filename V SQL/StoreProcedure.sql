@@ -151,15 +151,48 @@ AS
 
 GO
  
-drop Procedure [dbo].[SP_DETALLEPACIENTE]
-[SP_DETALLEPACIENTE] '160000000001'
+drop Procedure [dbo].[SP_DETALLEPACIENTE] go
+--- [SP_DETALLEPACIENTE] '160000000001'
 Create Procedure [dbo].[SP_DETALLEPACIENTE]
 @usu_numdoc varchar(250) =''
 as
-select [usu_docid_codigo] as CodPac,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,[usu_fechanac],[docid_codigo], [feg_reg],usu_estado from TB_USUARIO_SALUD
-where usu_docid_codigo  = @usu_numdoc 
-ORDER BY feg_reg DESC
+	select [usu_docid_codigo] as CodPac,[usu_numdoc] ,[usu_apepaterno] ,[usu_apematerno]  ,[usu_nombres] ,
+	CONVERT(VARCHAR(10),[usu_fechanac],103) as [usu_fechanac],[docid_codigo], [feg_reg],usu_estado from TB_USUARIO_SALUD
+	where usu_docid_codigo  = @usu_numdoc 
+	ORDER BY feg_reg DESC
 GO
+
+
+create PROC SP_ACTUALIZAR_PACIENTE
+@usu_docid_codigo varchar(20)='', @usu_numdoc varchar(250)='',@usu_apepaterno varchar(250), 
+@usu_apematerno varchar(250), @usu_nombres varchar(200),
+@usu_fechanac varchar(50) ,@usu_estado VARCHAR(3) 
+AS
+
+	if exists (select * from TB_USUARIO_SALUD where usu_docid_codigo  = @usu_docid_codigo     )
+			begin
+ 
+			UPDATE [BDGRPNET].[dbo].[TB_USUARIO_SALUD]
+		   SET [usu_docid_codigo] = @usu_docid_codigo
+			  ,[usu_numdoc] = @usu_numdoc
+			  ,[usu_apepaterno] = UPPER(@usu_apepaterno)
+			  ,[usu_apematerno] = UPPER(@usu_apematerno)
+			  ,[usu_nombres] = UPPER(@usu_nombres)
+			  ,[usu_fechanac] = @usu_fechanac
+			  ,[usu_estado] = @usu_estado
+			where  usu_docid_codigo  = @usu_docid_codigo 
+ 
+				
+				select 'Registro Actualizada con Exito ' as RespText,'true' as RespEstado ,'exito' as RespClass
+			end
+			else 
+			begin
+				select  'Error al Actualizar clave' as RespText,'flase' as RespEstado,'error' as RespClass	
+			end
+
+
+GO
+
  
  Create View Tv_TipoEstado
  as
@@ -171,3 +204,5 @@ Create proc SP_ListaTipoEstado
 as      
 select * from Tv_TipoEstado      
 GO
+
+

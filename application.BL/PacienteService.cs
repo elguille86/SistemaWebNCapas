@@ -34,5 +34,11 @@ namespace application.BL
         {
             return this.PacienteRespositorio.DAC_DetallePaciente(Codigo);
         }
+
+
+        public IList<RespuestaGlobal> BL_ActualizarPaciente(Paciente Model)
+        {
+            return this.PacienteRespositorio.DAC_ActualizarPaciente(Model);
+        }
     }
 }

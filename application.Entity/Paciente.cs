@@ -34,8 +34,7 @@ namespace application.Entity
         [DataType(DataType.Date)]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public string usu_fechanac { get; set; }
-        public string usu_apepaternoCodPac { get; set; }
-
+  
         [Display(Name = "Estado Paciente")]
         public string usu_estado { get; set; }
         public string CodPac { get; set; }

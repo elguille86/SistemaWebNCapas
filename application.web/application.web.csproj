@@ -121,7 +121,29 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Registro\Controllers\ComprobanteController.cs" />
     <Compile Include="Areas\Registro\Controllers\PacienteController.cs" />
+    <Compile Include="Areas\Registro\Models\ComprobanteModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComprobanteModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Registro\Models\ComprobanteModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComprobanteModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Registro\Models\ComprobanteModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComprobanteModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Registro\Models\TB_COMPROBANTE_CAB.cs">
+      <DependentUpon>ComprobanteModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Registro\Models\TB_COMPROBANTE_DET.cs">
+      <DependentUpon>ComprobanteModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Registro\RegistroAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
@@ -634,6 +656,24 @@
       <DependentUpon>ModelConfig.edmx</DependentUpon>
       <LastGenOutput>ModelConfig.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Areas\Registro\Models\ComprobanteModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ComprobanteModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Registro\Models\ComprobanteModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ComprobanteModel.edmx</DependentUpon>
+      <LastGenOutput>ComprobanteModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Registro\Models\ComprobanteModel.edmx.diagram">
+      <DependentUpon>ComprobanteModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Registro\Models\ComprobanteModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ComprobanteModel.edmx</DependentUpon>
+      <LastGenOutput>ComprobanteModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Registro\Views\Comprobante\RegistraComprobante.cshtml" />
     <None Include="Properties\PublishProfiles\Sistema01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.11.1.intellisense.js" />
@@ -688,7 +728,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Registro\Models\" />
     <Folder Include="Areas\Registro\Views\Default\" />
     <Folder Include="Areas\Registro\Views\Shared\" />
   </ItemGroup>

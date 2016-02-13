@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BDGRPNETModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_COMPROBANTE_CAB">
+          <Key>
+            <PropertyRef Name="cod_comp" />
+          </Key>
+          <Property Name="estab_serie" Type="varchar" MaxLength="50" />
+          <Property Name="cabe_fecha" Type="datetime" />
+          <Property Name="cabe_ticket" Type="varchar" MaxLength="50" />
+          <Property Name="cabe_hora" Type="datetime" />
+          <Property Name="cod_estab" Type="varchar" MaxLength="20" />
+          <Property Name="cod_comp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usu_docid_codigo" Type="varchar" MaxLength="20" />
+          <Property Name="login_user" Type="varchar" MaxLength="25" />
+          <Property Name="Nro_Fua" Type="varchar" MaxLength="20" />
+          <Property Name="Mont_Total" Type="numeric" Precision="20" Scale="2" />
+        </EntityType>
+        <EntityType Name="TB_COMPROBANTE_DET">
+          <Key>
+            <PropertyRef Name="CodDet" />
+          </Key>
+          <Property Name="CodDet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prod_descri" Type="varchar" MaxLength="200" />
+          <Property Name="cant_prod" Type="int" />
+          <Property Name="prod_precio" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="cod_comp" Type="int" />
+          <Property Name="cod_prod" Type="varchar" MaxLength="20" />
+          <Property Name="SubTotal" Type="numeric" Precision="20" Scale="2" />
+        </EntityType>
+        <Association Name="R_7">
+          <End Role="TB_COMPROBANTE_CAB" Type="Self.TB_COMPROBANTE_CAB" Multiplicity="0..1" />
+          <End Role="TB_COMPROBANTE_DET" Type="Self.TB_COMPROBANTE_DET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_COMPROBANTE_CAB">
+              <PropertyRef Name="cod_comp" />
+            </Principal>
+            <Dependent Role="TB_COMPROBANTE_DET">
+              <PropertyRef Name="cod_comp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDGRPNETModel1StoreContainer">
+          <EntitySet Name="TB_COMPROBANTE_CAB" EntityType="Self.TB_COMPROBANTE_CAB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_COMPROBANTE_DET" EntityType="Self.TB_COMPROBANTE_DET" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="R_7" Association="Self.R_7">
+            <End Role="TB_COMPROBANTE_CAB" EntitySet="TB_COMPROBANTE_CAB" />
+            <End Role="TB_COMPROBANTE_DET" EntitySet="TB_COMPROBANTE_DET" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDGRPNETModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_COMPROBANTE_CAB">
+          <Key>
+            <PropertyRef Name="cod_comp" />
+          </Key>
+          <Property Name="estab_serie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cabe_fecha" Type="DateTime" Precision="3" />
+          <Property Name="cabe_ticket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cabe_hora" Type="DateTime" Precision="3" />
+          <Property Name="cod_estab" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cod_comp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usu_docid_codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="login_user" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Nro_Fua" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mont_Total" Type="Decimal" Precision="20" Scale="2" />
+          <NavigationProperty Name="TB_COMPROBANTE_DET" Relationship="BDGRPNETModel1.R_7" FromRole="TB_COMPROBANTE_CAB" ToRole="TB_COMPROBANTE_DET" />
+        </EntityType>
+        <EntityContainer Name="BDGRPNETEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_COMPROBANTE_CAB" EntityType="Self.TB_COMPROBANTE_CAB" />
+          <EntitySet Name="TB_COMPROBANTE_DET" EntityType="BDGRPNETModel1.TB_COMPROBANTE_DET" />
+          <AssociationSet Name="R_7" Association="BDGRPNETModel1.R_7">
+            <End Role="TB_COMPROBANTE_CAB" EntitySet="TB_COMPROBANTE_CAB" />
+            <End Role="TB_COMPROBANTE_DET" EntitySet="TB_COMPROBANTE_DET" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TB_COMPROBANTE_DET">
+          <Key>
+            <PropertyRef Name="CodDet" />
+          </Key>
+          <Property Name="CodDet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prod_descri" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cant_prod" Type="Int32" />
+          <Property Name="prod_precio" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="cod_comp" Type="Int32" />
+          <Property Name="cod_prod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SubTotal" Type="Decimal" Precision="20" Scale="2" />
+          <NavigationProperty Name="TB_COMPROBANTE_CAB" Relationship="BDGRPNETModel1.R_7" FromRole="TB_COMPROBANTE_DET" ToRole="TB_COMPROBANTE_CAB" />
+        </EntityType>
+        <Association Name="R_7">
+          <End Type="BDGRPNETModel1.TB_COMPROBANTE_CAB" Role="TB_COMPROBANTE_CAB" Multiplicity="0..1" />
+          <End Type="BDGRPNETModel1.TB_COMPROBANTE_DET" Role="TB_COMPROBANTE_DET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_COMPROBANTE_CAB">
+              <PropertyRef Name="cod_comp" />
+            </Principal>
+            <Dependent Role="TB_COMPROBANTE_DET">
+              <PropertyRef Name="cod_comp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDGRPNETModel1StoreContainer" CdmEntityContainer="BDGRPNETEntities1">
+          <EntitySetMapping Name="TB_COMPROBANTE_CAB">
+            <EntityTypeMapping TypeName="BDGRPNETModel1.TB_COMPROBANTE_CAB">
+              <MappingFragment StoreEntitySet="TB_COMPROBANTE_CAB">
+                <ScalarProperty Name="estab_serie" ColumnName="estab_serie" />
+                <ScalarProperty Name="cabe_fecha" ColumnName="cabe_fecha" />
+                <ScalarProperty Name="cabe_ticket" ColumnName="cabe_ticket" />
+                <ScalarProperty Name="cabe_hora" ColumnName="cabe_hora" />
+                <ScalarProperty Name="cod_estab" ColumnName="cod_estab" />
+                <ScalarProperty Name="cod_comp" ColumnName="cod_comp" />
+                <ScalarProperty Name="usu_docid_codigo" ColumnName="usu_docid_codigo" />
+                <ScalarProperty Name="login_user" ColumnName="login_user" />
+                <ScalarProperty Name="Nro_Fua" ColumnName="Nro_Fua" />
+                <ScalarProperty Name="Mont_Total" ColumnName="Mont_Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_COMPROBANTE_DET">
+            <EntityTypeMapping TypeName="BDGRPNETModel1.TB_COMPROBANTE_DET">
+              <MappingFragment StoreEntitySet="TB_COMPROBANTE_DET">
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="cod_prod" ColumnName="cod_prod" />
+                <ScalarProperty Name="cod_comp" ColumnName="cod_comp" />
+                <ScalarProperty Name="prod_precio" ColumnName="prod_precio" />
+                <ScalarProperty Name="cant_prod" ColumnName="cant_prod" />
+                <ScalarProperty Name="prod_descri" ColumnName="prod_descri" />
+                <ScalarProperty Name="CodDet" ColumnName="CodDet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

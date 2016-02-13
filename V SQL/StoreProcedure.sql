@@ -126,7 +126,7 @@ as usu_estado
 where [usu_nombres] like '%'+@busqueda+'%'
 ORDER BY feg_reg DESC
 GO
-
+ 
 /*
 USE [BDDEMO]
 GO
@@ -162,7 +162,7 @@ as
 	ORDER BY feg_reg DESC
 GO
 
-
+--- [SP_ACTUALIZAR_PACIENTE] '160000000001','14253678','vera','ramos','carlos','01/01/1950','1'
 create PROC SP_ACTUALIZAR_PACIENTE
 @usu_docid_codigo varchar(20)='', @usu_numdoc varchar(250)='',@usu_apepaterno varchar(250), 
 @usu_apematerno varchar(250), @usu_nombres varchar(200),

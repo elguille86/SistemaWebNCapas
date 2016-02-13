@@ -250,3 +250,20 @@ SELECT
 
   Go
  
+
+ Create Procedure SP_ListaDetProc
+ as
+
+ SELECT  
+       [prod_descri] as produc
+      ,[cant_prod] as Cant
+      ,[prod_precio] as Precio
+      ,[cod_comp] as CodComp
+    
+      ,[SubTotal] as SubTotal
+  FROM [BDGRPNET].[dbo].[TB_COMPROBANTE_DET]
+
+  GO
+
+
+         

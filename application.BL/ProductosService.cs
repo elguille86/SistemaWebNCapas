@@ -23,5 +23,11 @@ namespace application.BL
         {
             return this.ProductoRespositorio.DAC_ListaCabCompro();
         }
+
+
+        public IList<GridDetComp> BL_ListaDetCompro()
+        {
+            return this.ProductoRespositorio.DAC_ListaDetCompro();
+        }
     }
 }

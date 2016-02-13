@@ -32,7 +32,7 @@
 
     url: '@Url.Action("JsonCabComp", "Json", new { area = "" }, null)'
 };
- 
+
 
         var dataAdapter = new $.jqx.dataAdapter(source);
 
@@ -120,9 +120,73 @@
             ]
         });
 
- 
+
+
+        var dataFields = [
+                { name: 'produc' },
+                { name: 'Precio' },
+                { name: 'Cant' },
+                { name: 'SubTotal' },
+                { name: 'CodComp' },
+                
+        ];
+
+        var source =
+        {
+            datatype: "json",
+            datafields: dataFields,
+            url: '@Url.Action("JsonDetComp", "Json", new { area = "" }, null)'
+        };
 
         var dataAdapter = new $.jqx.dataAdapter(source);
+
+        dataAdapter.dataBind();
+        $("#jqxgrid").on('rowselect', function (event) {
+            var CodComp = event.args.row.CodComp;
+            var records = new Array();
+            var length = dataAdapter.records.length;
+            for (var i = 0; i < length; i++) {
+                var record = dataAdapter.records[i];
+                if (record.CodComp == CodComp) {
+                    records[records.length] = record;
+                }
+            }
+            var dataSource = {
+                datafields: dataFields,
+                localdata: records
+            }
+            var adapter = new $.jqx.dataAdapter(dataSource);
+
+            // update data source.
+            $("#ordersGrid").jqxGrid({ source: adapter });
+        });
+
+        var linkrenderer = function (id, row, column, value) {
+
+            var datarow = $("#ordersGrid").jqxGrid("getcellvalue", id, "link1");
+            html = "<a href='" + datarow + "'target ='_blank'  >" + value + "</a>";
+            return html;
+        }
+        $("#ordersGrid").jqxGrid(
+        {
+            width: 900,
+            height: 220,
+            theme: theme,
+            columnsresize: true,/*
+                keyboardnavigation: false,*/
+            columns: [
+  
+                { text: 'produc', datafield: 'produc', width: 350 },
+                { text: 'Precio', datafield: 'Precio', width: 105 },
+                { text: 'Cant', datafield: 'Cant', cellsformat: 'd', width: 50 },
+                { text: 'SubTotal', datafield: 'SubTotal', width: 250,  },
+  
+                { text: 'CodComp', datafield: 'cod_cont', width: 90, hidden: 'hides' },
+
+            ]
+        });
+        $("#ordersGrid").jqxGrid('selectrow', 0);
+ 
 
     }
 </script>

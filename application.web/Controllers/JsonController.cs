@@ -59,6 +59,14 @@ namespace application.web.Controllers
             IList<Entity.GridCabComp> Lista = ProductoService.BL_ListaCabCompro();
             return Json(Lista, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult JsonDetComp()
+        {
+            IList<Entity.GridDetComp> Lista = ProductoService.BL_ListaDetCompro();
+            return Json(Lista, JsonRequestBehavior.AllowGet);
+        }
+        
+
     }
      
 }

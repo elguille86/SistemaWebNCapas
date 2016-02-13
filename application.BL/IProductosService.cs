@@ -11,5 +11,7 @@ namespace application.BL
     {
         IList<JsonBasico2> BL_JsonProductos(string Codigo);
         IList<GridCabComp> BL_ListaCabCompro();
+        IList<GridDetComp> BL_ListaDetCompro();
+ 
     }
 }

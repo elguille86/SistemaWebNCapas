@@ -23,6 +23,15 @@ namespace application.Entity
         public string CodComp { get; set; } 
     }
 
+    public class GridDetComp
+    {
+        public string produc { get; set; }
+        public string Precio { get; set; } 
+        public string Cant { get; set; } 
+        public string SubTotal { get; set; } 
+        public string CodComp { get; set; } 
+    }
+
  
 
 }

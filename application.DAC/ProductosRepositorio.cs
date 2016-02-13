@@ -47,11 +47,24 @@ namespace application.DAC
             using (var con = new SqlConnection(this.ConnectionString))
             {
                 con.Open();
-
                 respuesta = Dapper.SqlMapper.Query<Entity.GridCabComp>(con, "SP_Lista_CabProducto", null, commandType: CommandType.StoredProcedure).ToList();
                 con.Close();
             }
             return respuesta.ToList();
         }
+
+        public IList<Entity.GridDetComp> DAC_ListaDetCompro()
+        {
+            IList<Entity.GridDetComp> respuesta = null;
+            using (var con = new SqlConnection(this.ConnectionString))
+            {
+                con.Open();
+                respuesta = Dapper.SqlMapper.Query<Entity.GridDetComp>(con, "SP_ListaDetProc", null, commandType: CommandType.StoredProcedure).ToList();
+                con.Close();
+            }
+            return respuesta.ToList();
+        }
+
+        
     }
 }

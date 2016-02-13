@@ -18,6 +18,7 @@ namespace application.web.Areas.Registro.Models
         //public string login_user { get; set; }
         //public string Nro_Fua { get; set; }
         public Nullable<decimal> Mont_Total { get; set; }
+        //public string Mont_Total { get; set; }
 
         public List<TB_COMPROBANTE_DET> TB_COMPROBANTE_DET { get; set; }
 

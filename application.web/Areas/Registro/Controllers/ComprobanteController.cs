@@ -32,7 +32,6 @@ namespace application.web.Areas.Registro.Controllers
                 using (BDGRPNETEntities1 dc = new BDGRPNETEntities1()) {
 
                     TB_COMPROBANTE_CAB order = new TB_COMPROBANTE_CAB { 
-                    
                         estab_serie = "117",
                         cabe_fecha = o.cabe_fecha,
                         cabe_ticket ="0111-01444",

@@ -11,3 +11,7 @@ Packague.ps1 ->
 
 <h1> Requisitos </h1>
 Debe Descargar ek Nunit Test Adapeter 
+
+----  Hace uso de Datos Encriptados
+usuario : grodriguez
+clave :123456

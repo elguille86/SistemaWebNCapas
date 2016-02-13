@@ -52,7 +52,7 @@
        
             </tr>
         </table>
-        <input type="text" id="Mont_Total1"  />
+        <input type="text" id="Mont_Total" />
         <div style="padding:10px 0px; text-align:left">
             <input id="submit" type="button" value="Save" style="padding:10px 20px" />
         </div>
@@ -145,27 +145,21 @@
                         var data = {
                             cabe_fecha: $('#cabe_fecha').val().trim(),
                             usu_docid_codigo: $('#usu_docid_codigo').val().trim(),
-                            Mont_Total: $('#Mont_Total1').val(),
+                            Mont_Total: parseFloat($('#Mont_Total').val()),
                             TB_COMPROBANTE_DET: orderItems
                         }
                         $(this).val('Please wait......')
                         $.ajax({
                             //                        url: 'URL FOR POST ACTION HERE',
                             url: '@Url.Action("SaveOver", "Comprobante", new { area = "Registro" }, null)',
-                            type: "POST",
-                            data: JSON.stringify(data),
-                            datatype: "JSON",
-                            contentType: "application/json",
+                            type: "POST", data: JSON.stringify(data),
+                            datatype: "JSON", contentType: "application/json",
                             success: function (d) {
-                                // check is successfully save to database
                                 if (d.status == true) {
-                                    //will send status from server side
                                     alert('Comprobante Registrado con Exito');
-                                    //clear form
-                                    document.location = 'index';
-                                     
+                                    document.location = 'index';                                     
                                 } else {
-                                    alert('Failed');
+                                    alert('Error Volver a Intentar');
                                 }
                             },
                             error: function () {
@@ -186,7 +180,7 @@
                     row["prod_precio"] = dpre; row["cod_prod"] = dcodp; row["SubTotal"] =  (dpre  *  dcant ) ;
                     return row;
                 }
-                var deletedatos = function (id) { total = total - orderItems[id].SubTotal; delete orderItems[id]; $("#Mont_Total1").val(total); }
+                var deletedatos = function (id) { total = total - orderItems[id].SubTotal; delete orderItems[id]; $("#Mont_Total").val(total); }
 
                 var source =
                 {
@@ -194,12 +188,7 @@
                     datatype: "local",
                     datafields:
                     [
-                        { name: 'prod_descri', type: 'string' },
-                        { name: 'cant_prod', type: 'string' },
-                        { name: 'prod_precio', type: 'string' },
-                        { name: 'cod_prod', type: 'string' },
-                        { name: 'SubTotal', type: 'number' },
-
+                        { name: 'prod_descri', type: 'string' },{ name: 'cant_prod', type: 'string' },{ name: 'prod_precio', type: 'string' },{ name: 'cod_prod', type: 'string' },{ name: 'SubTotal', type: 'number' },
                     ],
                     addrow: function (rowid, rowdata, position, commit) { commit(true); },
                     deleterow: function (rowid, commit) {  commit(true);  },
@@ -208,10 +197,7 @@
                 // initialize jqxGrid
                 $("#jqxgrid").jqxGrid(
                 {
-                    theme: theme, width: 560,
-                    height: 350,
-                    source: dataAdapter,
-                    showtoolbar: true,
+                    theme: theme, width: 560, height: 350, source: dataAdapter, showtoolbar: true,
                     rendertoolbar: function (toolbar) {
                         var me = this;
                         var container = $("<div style='margin: 5px;'></div>");
@@ -264,7 +250,8 @@
                                     Cod_prod: dcodp
                                 });
                                 total = parseFloat(total) + (dcant * dpre);
-                                $("#Mont_Total1").val(total);
+                                $("#Mont_Total").val(total);
+
                                 $('#itemName').val('');$('#quantity').val('');$('#rate').val(''); $('#itemNamecodigo').val('');
                             }
                         });

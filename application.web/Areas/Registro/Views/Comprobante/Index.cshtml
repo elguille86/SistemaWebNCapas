@@ -30,8 +30,9 @@
     ],
 
 
-  url: '@Url.Action("JsonCabComp", "Comprobante", new { area = "Registro" }, null)'
+    url: '@Url.Action("JsonCabComp", "Json", new { area = "" }, null)'
 };
+ 
 
         var dataAdapter = new $.jqx.dataAdapter(source);
 
@@ -98,7 +99,7 @@
         });
 
         /* Fin de Paginas de la Grilla */
-
+        var theme = 'metrodark';//'classic';
         $("#jqxgrid").jqxGrid({
             theme: theme,
             source: source,
@@ -111,16 +112,18 @@
             showfilterrow: true,
             filterable: true,
             columns: [
-       
-              { text: 'Cliente', datafield: 'desc_contra', width: 650 /*, cellrenderer: linkenderer */ },
-              { text: 'Fecha', datafield: 'fec_pub', width: 120 },
-              { text: 'Monto', datafield: 'year_cont', width: 65 },
-              { text: 'CodComp', datafield: 'year_cont', width: 65, hidden: 'hides' },
+
+              { text: 'Cliente', datafield: 'Cliente', width: 650 /*, cellrenderer: linkenderer */ },
+              { text: 'Fecha', datafield: 'Fecha', width: 120 },
+              { text: 'Monto', datafield: 'Monto', width: 65 },
+              { text: 'CodComp', datafield: 'CodComp', width: 65, hidden: 'hides' },
             ]
-        });
+        });
 
+ 
 
-        var dataAdapter = new $.jqx.dataAdapter(source);
+        var dataAdapter = new $.jqx.dataAdapter(source);
+
     }
 </script>
 }

@@ -1,11 +1,12 @@
-﻿param(
+param(
     [string]$version="2.0.2",
     [string]$AppName    
 )
-
+### Nota de Ubicacion para la publicacion desde VS :  ..\Build\app
 ####
 #### Function to generate all available xml/config transformations and put them all on the package output directory
 ####
+
 function TransFormXmlConfigFiles([string]$projectFilePath,[string]$configDestinationFolder)
 {
     #Read project file xml
@@ -44,7 +45,8 @@ function TransFormXmlConfigFiles([string]$projectFilePath,[string]$configDestina
 
     $projectFolderPath = (Split-Path -Parent $projectFilePath) + "\" # Script Directory
 
-    Add-Type -Path "C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v14.0\Web\Microsoft.Web.XmlTransform.dll"
+    Add-Type -Path "C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v12.0\Web\Microsoft.Web.XmlTransform.dll"
+        
 
     #get all the files that are marked as transformations
     $transformationFilesNodes = $xmlProjectContent.Project.ItemGroup.None | %{ if ($_.DependentUpon -ne $null) {$_} }
@@ -102,28 +104,31 @@ function TransFormXmlConfigFiles([string]$projectFilePath,[string]$configDestina
     }
 }
 
+$msbuild = "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
 
 $current =  "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-
 
 $projectFilePath = join-path $current "\application.web\application.web.csproj"
 $package_config_path = join-path $current "\Build\tools\config"
 
+if ( -not ( Test-Path ".\Build") )
+{
+    mkdir ".\Build"
+}
+
+
 Remove-Item .\Build\* -recurse -Force
 
-mkdir .\Build\tools\
+& $msbuild $projectFilePath /t:Build /p:Configuration=Release /p:DeployOnBuild=True /p:PublishProfile=mipubweb
 
+
+mkdir .\Build\tools\
+ 
 mkdir $package_config_path
 
-
 TransFormXmlConfigFiles $projectFilePath  $package_config_path
-
-
-$msbuild = "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
-
-& $msbuild $projectFilePath /t:Build /p:Configuration=Release /p:DeployOnBuild=True /p:PublishProfile=Release
-
-Copy-Item CineWeb.nuspec -Destination .\Build\app.nuspec
+## Ubicacion del Nuestro Archivo Nuspe
+Copy-Item SistemaWebNCapas.nuspec -Destination .\Build\app.nuspec
 
 Copy-Item .\Packaging\tools\* -Destination .\Build\tools\ -Recurse
 
@@ -136,10 +141,9 @@ $xml.SelectNodes("//version") | % {
 
 $xml.Save($nuget_path)
 
+
 cd ".\Build"
 
 & choco pack app.nuspec --version=$version
 
 cd $current
-
-
